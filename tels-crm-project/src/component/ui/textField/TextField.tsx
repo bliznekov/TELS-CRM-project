@@ -28,7 +28,7 @@ const TextField: React.FC<PropsType> = ({
         if (autofocus) {
             nameRef.current?.focus();
         }
-    }, []);
+    }, [autofocus]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues((prevValues) => ({

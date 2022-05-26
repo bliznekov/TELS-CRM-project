@@ -1,15 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import useTranslate from "../hooks/useTranslate";
 
 import c from "./Header.module.scss";
 import LogoIcon from "../../assets/logo.png";
 
 const getLinks = [
-    { url: "/info", text: "Info" },
-    { url: "/login", text: "Login" },
+    { url: "/info", text: "nav.info" },
+    { url: "/login", text: "nav.login" },
 ];
 
 const Header: React.FC = () => {
+    const { t, lang, setLang } = useTranslate();
+    const nextLang = lang === "en" ? "ru" : "en";
     const links = getLinks;
 
     return (
@@ -29,11 +32,17 @@ const Header: React.FC = () => {
                                     isActive ? c.active : ""
                                 }
                             >
-                                {text}
+                                {t(text)}
                             </NavLink>
                         </li>
                     ))}
                 </ul>
+                <button
+                    className={c.langButton}
+                    onClick={() => setLang(nextLang)}
+                >
+                    {nextLang}
+                </button>
             </div>
         </nav>
     );
