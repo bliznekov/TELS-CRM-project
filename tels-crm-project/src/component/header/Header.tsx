@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 import c from "./Header.module.scss";
 import LogoIcon from "../../assets/logo.png";
 
-const getLinks = [{ url: "/info", text: "Info" }];
+const getLinks = [
+    { url: "/info", text: "Info" },
+    { url: "/login", text: "Login" },
+];
 
 const Header: React.FC = () => {
     const links = getLinks;

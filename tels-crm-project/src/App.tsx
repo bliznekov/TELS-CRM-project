@@ -1,6 +1,8 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "./component/header/Header";
+import Info from "./component/info/Info";
+import Login from "./component/login/Login";
 
 import "./App.scss";
 
@@ -9,7 +11,13 @@ function App() {
         <BrowserRouter>
             <div className="app-container">
                 <Header />
-                <div className="container"></div>
+                <div className="center-content">
+                    <Routes>
+                        <Route path="/info" element={<Info />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="*" element={<Navigate to={"/info"} />} />
+                    </Routes>
+                </div>
             </div>
         </BrowserRouter>
     );
