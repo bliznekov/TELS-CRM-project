@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import en from "./../../translations/en.json";
-import ru from "./../../translations/ru.json";
+import en from "./../../jsonFiles/translations/en.json";
+import ru from "./../../jsonFiles/translations/ru.json";
 
 type TranslateType = {
     [prop: string]: string;

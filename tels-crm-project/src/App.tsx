@@ -4,6 +4,7 @@ import Header from "./component/header/Header";
 import Info from "./component/info/Info";
 import Login from "./component/login/Login";
 import Truks from "./component/trucks/Truks";
+import TruckCard from "./component/truckCard/TruckCard";
 
 import "./App.scss";
 
@@ -15,7 +16,10 @@ function App() {
                 <div className="center-content">
                     <Routes>
                         <Route path="/info" element={<Info />} />
-                        <Route path="/truks" element={<Truks />} />
+                        <Route path="/truks/">
+                            <Route index element={<Truks />} />
+                            <Route path=":id" element={<TruckCard />} />
+                        </Route>
                         <Route path="/login" element={<Login />} />
                         <Route path="*" element={<Navigate to={"/info"} />} />
                     </Routes>
