@@ -4,9 +4,9 @@ import Truck from "./truck/Truck";
 
 import c from "./Trucks.module.scss";
 
-const token = "c5da23c0-5569-4707-9e4a-d4d3777222a8";
-const login = "t802_bra";
-const pass = "onsta234";
+// const token = "c5da23c0-5569-4707-9e4a-d4d3777222a8";
+// const login = "t802_bra";
+// const pass = "onsta234";
 
 type PropsType = {};
 
@@ -21,8 +21,10 @@ const Truks: React.FC<PropsType> = () => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        //так же не могу догнать почему вызывается 2 раза консоль и 2 раза запрос делается.
+        fetchData();
         console.log(trucks);
-    }, [trucks]);
+    }, []);
 
     const fetchData = () => {
         setLoading(true);
@@ -39,14 +41,14 @@ const Truks: React.FC<PropsType> = () => {
                 setLoading(false);
             });
     };
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     return (
         <div className={c.trucksContainer}>
+            <h2>Автомобили</h2>
             <table>
                 <tr>
+                    <th></th>
+                    <th>Id</th>
                     <th>Truck number</th>
                     <th>Phone number</th>
                     <th>Speed</th>

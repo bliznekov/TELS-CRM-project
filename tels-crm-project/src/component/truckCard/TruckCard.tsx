@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import usePost from "../../assets/apiHooks/useTruck";
+import usePost from "../../apiHooks/useTruck";
 
 const TruckCard: React.FC = () => {
     const { id } = useParams();
 
     const { data, loading, error } = usePost(id);
-    //const re = data.root.result.items[0].auto_number;
+
+    //вот здесь получается дичь немного, в result ничего не приходит, хотя когда делаешь запрос, то он обрабатывается.
+
+    //const result = data.root.result.items[0].auto_number;
     if (loading) {
         return <div>Loading...</div>;
     } else if (error) {
