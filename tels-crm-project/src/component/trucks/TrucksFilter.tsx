@@ -1,38 +1,33 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import TrucksFilterType from "../../types/TrucksFilterType";
+import TextField from "../ui/textField/TextField";
+import TrucksFilterType from "./TrucksFilterTypes";
+import { setLimit, setPage, setTruck } from "./TrucksActionCreators";
 
 type PropsType = {
     count: number;
-    filter: TrucksFilterType;
-    setFilter: (callback: (v: TrucksFilterType) => TrucksFilterType) => void;
+    state: TrucksFilterType;
+    dispatch: any;
 };
 
-const PostsFilter: React.FC<PropsType> = ({ count, filter, setFilter }) => {
+const TrucksFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
     const handleChangeLimit = (event: SelectChangeEvent) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            page: 1,
-            limit: +event.target.value,
-        }));
+        dispatch(setLimit(+event.target.value));
     };
 
     const handleChangePage = (
         event: React.ChangeEvent<unknown>,
         value: number
     ) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            page: value,
-        }));
+        dispatch(setPage(value));
     };
 
     return (
         <div className="posts-container">
             <Select
                 label="Items per page"
-                value={filter.limit.toString()}
+                value={state.limit.toString()}
                 onChange={handleChangeLimit}
             >
                 <MenuItem value={10}>10</MenuItem>
@@ -42,12 +37,12 @@ const PostsFilter: React.FC<PropsType> = ({ count, filter, setFilter }) => {
 
             <Pagination
                 className="pagination"
-                page={filter.page}
+                page={state.page}
                 onChange={handleChangePage}
-                count={Math.ceil(count / filter.limit)}
+                count={Math.ceil(count / state.limit)}
             />
         </div>
     );
 };
 
-export default PostsFilter;
+export default TrucksFilter;

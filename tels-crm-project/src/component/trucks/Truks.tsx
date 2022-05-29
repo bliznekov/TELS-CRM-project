@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import useTrucks from "../../apiHooks/useTrucks";
-import TrucksFilterType from "../../types/TrucksFilterType";
+import { initialState, TrucksFilterReducer } from "./TrucksFilterReduser";
 import Truck from "./truck/Truck";
 import trucks from "./../../jsonFiles/trucks/trucks.json";
-
+import TrucksFilter from "./TrucksFilter";
 import c from "./Trucks.module.scss";
-import PostsFilter from "./TrucksFilter";
 
 type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
-    const [filter, setFilter] = useState<TrucksFilterType>({
-        page: 1,
-        limit: 10,
-    });
+    const [state, dispatch] = useReducer(TrucksFilterReducer, initialState);
 
-    const { mass, loading, error } = useTrucks(filter);
+    const { mass, loading, error } = useTrucks(state);
 
     return (
         <div className={c.trucksContainer}>
-            <PostsFilter
+            <TrucksFilter
                 count={trucks.length}
-                filter={filter}
-                setFilter={setFilter}
+                state={state}
+                dispatch={dispatch}
             />
             <h2>Автомобили</h2>
             <table>

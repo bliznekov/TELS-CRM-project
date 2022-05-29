@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const useRequest = <T>(defValue: T, url: string) => {
@@ -13,11 +14,10 @@ const useRequest = <T>(defValue: T, url: string) => {
         setLoading(true);
         setMass(defValue);
         setTimeout(() => {
-            fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    const mass = data.root.result.items as T;
-                    setMass(mass);
+            axios(url)
+                .then((response) => {
+                    const data = mass;
+                    setMass(response.data.root.result.items as T);
                 })
                 .catch(() => {
                     setError(true);

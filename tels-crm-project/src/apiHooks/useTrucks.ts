@@ -1,7 +1,7 @@
-import TrucksFilterType from "../types/TrucksFilterType";
 import TruckType from "../types/truckType";
 import useRequest from "./useRequest";
 import trucks from "./../jsonFiles/trucks/trucks.json";
+import TrucksFilterType from "../component/trucks/TrucksFilterTypes";
 
 // const token = "c5da23c0-5569-4707-9e4a-d4d3777222a8";
 // const login = "t802_bra";
@@ -15,8 +15,13 @@ const defValue: TruckType[] = [{}];
 const useTrucks = ({ page, limit }: TrucksFilterType) => {
     const offset = limit * (page - 1);
     let trucksCut = trucks.slice(offset, offset + limit).join("|");
+    let url = `${URL}&imei=${trucksCut}`;
 
-    return useRequest<TruckType[]>(defValue, `${URL}&imei=${trucksCut}`);
+    // if (truck) {
+    //     url += `${URL}&name_filter=${truck}`;
+    // }
+
+    return useRequest<TruckType[]>(defValue, `${url}`);
 };
 
 export default useTrucks;

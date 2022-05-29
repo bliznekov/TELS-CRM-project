@@ -7,20 +7,16 @@ type PropsType = {
     autofocus?: boolean;
     label: string;
     type?: string;
-    name: string;
-    values: FormValuesType;
-    setValues: (
-        callback: (prevValue: FormValuesType) => FormValuesType
-    ) => void;
+    value?: string;
+    setValue: (value: string) => void;
 };
 
 const TextField: React.FC<PropsType> = ({
     autofocus,
     label,
     type = "text",
-    name,
-    values,
-    setValues,
+    value,
+    setValue,
 }) => {
     const nameRef = useRef<HTMLInputElement>(null);
 
@@ -31,10 +27,7 @@ const TextField: React.FC<PropsType> = ({
     }, [autofocus]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues((prevValues) => ({
-            ...prevValues,
-            [name]: event.target.value,
-        }));
+        setValue(event.target.value);
     };
 
     return (
@@ -42,7 +35,7 @@ const TextField: React.FC<PropsType> = ({
             <div className={c.label}>{label}</div>
             <input
                 ref={nameRef}
-                value={values[name] || ""}
+                value={value || ""}
                 onChange={handleChange}
                 className={c.input}
                 type={type}

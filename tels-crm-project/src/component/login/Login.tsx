@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormValuesType from "../../types/FormValuesType";
 import Button from "../ui/button/Button";
 import FormCard from "../ui/formCard/FormCard";
-import TextField from "../ui/textField/TextField";
+import FormTextField from "../ui/formTextField/FormTextField";
 import useTranslate from "../hooks/useTranslate";
 
 const Login: React.FC = () => {
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
     return (
         <FormCard header={t("login.label")}>
-            <TextField
+            <FormTextField
                 autofocus={true}
                 label={t("login.login")}
                 type={"text"}
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
                 values={values}
                 setValues={setValues}
             />
-            <TextField
+            <FormTextField
                 label={t("login.password")}
                 type={"password"}
                 values={values}
