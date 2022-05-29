@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from "react";
-import useTrucks from "../../apiHooks/useTruck";
-import TruckType from "../../types/truckType";
+import React, { useState } from "react";
+import useTrucks from "../../apiHooks/useTrucks";
+import TrucksFilterType from "../../types/TrucksFilterType";
 import Truck from "./truck/Truck";
+import trucks from "./../../jsonFiles/trucks/trucks.json";
 
 import c from "./Trucks.module.scss";
+import PostsFilter from "./TrucksFilter";
 
 type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
-    const { mass, loading, error } = useTrucks("");
+    const [filter, setFilter] = useState<TrucksFilterType>({
+        page: 1,
+        limit: 10,
+    });
 
-    if (loading) {
-        return <div>Loading...</div>;
-    } else if (error) {
-        return <div>Error...</div>;
-    }
-
-    if (!mass) {
-        return null;
-    }
+    const { mass, loading, error } = useTrucks(filter);
 
     return (
         <div className={c.trucksContainer}>
+            <PostsFilter
+                count={trucks.length}
+                filter={filter}
+                setFilter={setFilter}
+            />
             <h2>Автомобили</h2>
             <table>
                 <tr>
@@ -35,10 +37,8 @@ const Truks: React.FC<PropsType> = () => {
                     <Truck key={item.object_id} data={item} />
                 ))}
             </table>
-
             {loading && "Loading..."}
-            {loading && "Loading..."}
-            {error && "Error..."}
+            {error && "Error ("}
         </div>
     );
 };

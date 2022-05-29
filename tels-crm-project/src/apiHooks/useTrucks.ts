@@ -1,5 +1,7 @@
+import TrucksFilterType from "../types/TrucksFilterType";
 import TruckType from "../types/truckType";
 import useRequest from "./useRequest";
+import trucks from "./../jsonFiles/trucks/trucks.json";
 
 // const token = "c5da23c0-5569-4707-9e4a-d4d3777222a8";
 // const login = "t802_bra";
@@ -8,10 +10,13 @@ import useRequest from "./useRequest";
 const URL =
     '?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&string="json"&get_en_address="true"';
 
-// Совсем тут запутался, не могу выьянуть отсюда данные в компонент TruckCard, чтобы отслеживать его по id
-
 const defValue: TruckType[] = [{}];
 
-const usePost = () => useRequest<TruckType[]>(defValue, `${URL}`);
+const useTrucks = ({ page, limit }: TrucksFilterType) => {
+    const offset = limit * (page - 1);
+    let trucksCut = trucks.slice(offset, offset + limit).join("|");
 
-export default usePost;
+    return useRequest<TruckType[]>(defValue, `${URL}&imei=${trucksCut}`);
+};
+
+export default useTrucks;

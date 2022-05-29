@@ -42,6 +42,7 @@ const Truck: React.FC<PropsType> = ({ data }) => {
 
                 <th className="phone">+{data.phone_number}</th>
                 <th className="speed">{data.speed_can}</th>
+                <th className="speed">{data.object_uid}</th>
             </tr>
         </>
     );
