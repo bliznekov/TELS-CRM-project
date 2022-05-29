@@ -1,46 +1,24 @@
 import React, { useEffect, useState } from "react";
+import useTrucks from "../../apiHooks/useTruck";
 import TruckType from "../../types/truckType";
 import Truck from "./truck/Truck";
 
 import c from "./Trucks.module.scss";
 
-// const token = "c5da23c0-5569-4707-9e4a-d4d3777222a8";
-// const login = "t802_bra";
-// const pass = "onsta234";
-
 type PropsType = {};
 
-const URL =
-    '?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&string="json"&get_en_address="true"';
-// const URL =
-//     '?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&imei=352093083165729|352093083172220&string="json"&';
-
 const Truks: React.FC<PropsType> = () => {
-    const [trucks, setTruks] = useState<TruckType[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const { mass, loading, error } = useTrucks("");
 
-    useEffect(() => {
-        //так же не могу догнать почему вызывается 2 раза консоль и 2 раза запрос делается.
-        fetchData();
-        console.log(trucks);
-    }, []);
+    if (loading) {
+        return <div>Loading...</div>;
+    } else if (error) {
+        return <div>Error...</div>;
+    }
 
-    const fetchData = () => {
-        setLoading(true);
-        fetch(URL)
-            .then((response) => response.json())
-            .then((data) => {
-                const trucks = data.root.result.items as TruckType[];
-                setTruks(trucks);
-            })
-            .catch(() => {
-                setError(true);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
+    if (!mass) {
+        return null;
+    }
 
     return (
         <div className={c.trucksContainer}>
@@ -53,7 +31,7 @@ const Truks: React.FC<PropsType> = () => {
                     <th>Phone number</th>
                     <th>Speed</th>
                 </tr>
-                {trucks.map((item) => (
+                {mass.map((item) => (
                     <Truck key={item.object_id} data={item} />
                 ))}
             </table>

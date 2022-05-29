@@ -7,7 +7,7 @@ import LogoIcon from "../../assets/logo.png";
 
 const getLinks = [
     { url: "/info", text: "nav.info" },
-    { url: "/truks", text: "nav.truks" },
+    { url: "/trucks", text: "nav.trucks" },
     { url: "/login", text: "nav.login" },
 ];
 

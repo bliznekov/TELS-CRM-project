@@ -5,18 +5,15 @@ import usePost from "../../apiHooks/useTruck";
 const TruckCard: React.FC = () => {
     const { id } = useParams();
 
-    const { data, loading, error } = usePost(id);
+    const { mass, loading, error } = usePost(id);
 
-    //вот здесь получается дичь немного, в result ничего не приходит, хотя когда делаешь запрос, то он обрабатывается.
-
-    //const result = data.root.result.items[0].auto_number;
     if (loading) {
         return <div>Loading...</div>;
     } else if (error) {
         return <div>Error...</div>;
     }
 
-    if (!data) {
+    if (!mass) {
         return null;
     }
 
@@ -31,9 +28,7 @@ const TruckCard: React.FC = () => {
                     )} */}
                 </th>
                 {/* {!data.root.result.speed_can && <th className="number">NaN</th>} */}
-                <th className="number">
-                    {/* {data.root.result.items.auto_number} */}
-                </th>
+                <th className="number">{mass[0].auto_number}</th>
                 {/* <th className="phone">+{data.root.phone_number}</th>
                 <th className="speed">{data.root.speed_can}</th>
                 <th className="id">{data.root.object_id}</th> */}

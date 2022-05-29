@@ -16,7 +16,7 @@ function App() {
                 <div className="center-content">
                     <Routes>
                         <Route path="/info" element={<Info />} />
-                        <Route path="/truks/">
+                        <Route path="/trucks/">
                             <Route index element={<Truks />} />
                             <Route path=":id" element={<TruckCard />} />
                         </Route>

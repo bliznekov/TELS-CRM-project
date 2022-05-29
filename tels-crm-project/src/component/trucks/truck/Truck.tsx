@@ -4,16 +4,29 @@ import TruckType from "../../../types/truckType";
 import c from "./Truck.module.scss";
 import { ReactComponent as TruckIcon } from "./../../../assets/truckStop.svg";
 import { ReactComponent as TruckIconMove } from "./../../../assets/truckArrow.svg";
+import { useNavigate } from "react-router-dom";
 
 type PropsType = {
     data: TruckType;
 };
 
 const Truck: React.FC<PropsType> = ({ data }) => {
+    const navigate = useNavigate();
+
+    if (data.object_id === null || undefined) {
+        return null;
+    }
+
+    const handleClick = () => {
+        navigate(`/trucks/${data.object_id}`, {
+            state: { st: 12 },
+        });
+    };
+
     return (
         <>
             <tr className={c.truckContainer}>
-                <th className="svg">
+                <th className="svg" onClick={handleClick}>
                     {!(data.speed_can === 0) ? (
                         <TruckIconMove />
                     ) : (

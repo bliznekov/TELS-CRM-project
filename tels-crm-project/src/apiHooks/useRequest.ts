@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useRequest = <T>(defValue: T, url: string) => {
-    const [data, setData] = useState<T>(defValue);
+    const [mass, setMass] = useState<T>(defValue);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
@@ -11,12 +11,13 @@ const useRequest = <T>(defValue: T, url: string) => {
 
     const fetchData = () => {
         setLoading(true);
-        setData(defValue);
+        setMass(defValue);
         setTimeout(() => {
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    setData(data as T);
+                    const mass = data.root.result.items as T;
+                    setMass(mass);
                 })
                 .catch(() => {
                     setError(true);
@@ -27,7 +28,7 @@ const useRequest = <T>(defValue: T, url: string) => {
         });
     };
 
-    return { data, loading, error };
+    return { mass, loading, error };
 };
 
 export default useRequest;
