@@ -13,9 +13,9 @@ const Truks: React.FC<PropsType> = () => {
     const [state, dispatch] = useReducer(TrucksFilterReducer, initialState);
     const { fetchTrucks } = useActions();
 
-    const data = useSelector((state) => state.posts.data);
-    const loading = useSelector((state) => state.posts.loading);
-    const error = useSelector((state) => state.posts.error);
+    const data = useSelector((state) => state.trucks.data);
+    const loading = useSelector((state) => state.trucks.loading);
+    const error = useSelector((state) => state.trucks.error);
 
     useEffect(() => {
         fetchTrucks(state);

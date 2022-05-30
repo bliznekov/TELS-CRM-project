@@ -1,7 +1,9 @@
+import { truckReducer } from "./truck/truckSlice";
 import { trucksReducer } from "./trucks/trucksSlice";
 
 const reducer = {
-    posts: trucksReducer,
+    truck: truckReducer,
+    trucks: trucksReducer,
 };
 
 export default reducer;

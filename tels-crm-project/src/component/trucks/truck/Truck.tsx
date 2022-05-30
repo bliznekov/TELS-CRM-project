@@ -18,9 +18,7 @@ const Truck: React.FC<PropsType> = ({ data }) => {
     }
 
     const handleClick = () => {
-        navigate(`/trucks/${data.object_id}`, {
-            state: { st: 12 },
-        });
+        navigate(`/trucks/${data.object_id}`);
     };
 
     return (
