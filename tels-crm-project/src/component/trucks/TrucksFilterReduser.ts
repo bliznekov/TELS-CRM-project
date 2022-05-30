@@ -6,6 +6,7 @@ import TrucksFilterType, {
 export const initialState: TrucksFilterType = {
     page: 1,
     limit: 10,
+    truck: "",
 };
 
 export const TrucksFilterReducer = (
@@ -25,16 +26,20 @@ export const TrucksFilterReducer = (
                 limit: action.payload,
             };
         case TrucksFilterActionTypes.SET_TRUCK_TYPE: {
-            const numValue = +action.payload;
-            if (isNaN(numValue)) {
-                return state;
+            let re = /^[A-Za-z0-9]{0,8}$/;
+            const truck = action.payload;
+            if (re.test(truck)) {
+                return {
+                    ...state,
+                    truck,
+                };
+            } else {
+                if (truck === "") {
+                    return { ...state, truck: "" };
+                } else {
+                    return { ...state };
+                }
             }
-
-            const truck = numValue > 0 ? numValue : undefined;
-            return {
-                ...state,
-                //truck,
-            };
         }
         default:
             return state;

@@ -12,14 +12,14 @@ const URL =
 
 const defValue: TruckType[] = [{}];
 
-const useTrucks = ({ page, limit }: TrucksFilterType) => {
+const useTrucks = ({ page, limit, truck }: TrucksFilterType) => {
     const offset = limit * (page - 1);
     let trucksCut = trucks.slice(offset, offset + limit).join("|");
     let url = `${URL}&imei=${trucksCut}`;
 
-    // if (truck) {
-    //     url += `${URL}&name_filter=${truck}`;
-    // }
+    if (truck) {
+        url = `${URL}&name_filter=${truck}`;
+    }
 
     return useRequest<TruckType[]>(defValue, `${url}`);
 };

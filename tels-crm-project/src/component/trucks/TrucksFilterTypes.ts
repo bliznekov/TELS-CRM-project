@@ -27,7 +27,7 @@ export type TrucksFilterAction =
 type TrucksFilterType = {
     limit: number;
     page: number;
-    trucck?: number;
+    truck?: string;
 };
 
 export default TrucksFilterType;

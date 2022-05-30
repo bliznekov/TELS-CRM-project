@@ -23,8 +23,17 @@ const TrucksFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
         dispatch(setPage(value));
     };
 
+    const updateTruck = (value: string) => {
+        dispatch(setTruck(value));
+    };
+
     return (
         <div className="posts-container">
+            <TextField
+                label="Truck"
+                value={state.truck}
+                setValue={updateTruck}
+            />
             <Select
                 label="Items per page"
                 value={state.limit.toString()}
