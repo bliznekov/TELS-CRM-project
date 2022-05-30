@@ -1,5 +1,6 @@
-import React, { useReducer } from "react";
-import useTrucks from "../../apiHooks/useTrucks";
+import React, { useEffect, useReducer } from "react";
+import { useSelector } from "../hooks/useSelector";
+import { useActions } from "../hooks/useActions";
 import { initialState, TrucksFilterReducer } from "./TrucksFilterReduser";
 import Truck from "./truck/Truck";
 import trucks from "./../../jsonFiles/trucks/trucks.json";
@@ -10,8 +11,15 @@ type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
     const [state, dispatch] = useReducer(TrucksFilterReducer, initialState);
+    const { fetchTrucks } = useActions();
 
-    const { mass, loading, error } = useTrucks(state);
+    const data = useSelector((state) => state.posts.data);
+    const loading = useSelector((state) => state.posts.loading);
+    const error = useSelector((state) => state.posts.error);
+
+    useEffect(() => {
+        fetchTrucks(state);
+    }, [state]);
 
     return (
         <div className={c.trucksContainer}>
@@ -29,12 +37,12 @@ const Truks: React.FC<PropsType> = () => {
                     <th>Phone number</th>
                     <th>Speed</th>
                 </tr>
-                {mass.map((item) => (
+                {data.map((item) => (
                     <Truck key={item.object_id} data={item} />
                 ))}
             </table>
             {loading && "Loading..."}
-            {error && "Error ("}
+            {error}
         </div>
     );
 };
