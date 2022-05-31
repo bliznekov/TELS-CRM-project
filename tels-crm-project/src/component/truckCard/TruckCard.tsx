@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import usePost from "../../assets/apiHooks/useTruck";
+import usePost from "../../apiHooks/useTruck";
+import { useActions } from "../hooks/useActions";
+import { useSelector } from "../hooks/useSelector";
 
 const TruckCard: React.FC = () => {
     const { id } = useParams();
 
-    const { data, loading, error } = usePost(id);
-    //const re = data.root.result.items[0].auto_number;
+    const data = useSelector((state) => state.truck.data);
+    const loading = useSelector((state) => state.truck.loading);
+    const error = useSelector((state) => state.truck.error);
+
+    const { fetchTruck } = useActions();
+
+    useEffect(() => {
+        fetchTruck(id);
+    }, [id]);
+
     if (loading) {
         return <div>Loading...</div>;
     } else if (error) {
@@ -28,9 +38,7 @@ const TruckCard: React.FC = () => {
                     )} */}
                 </th>
                 {/* {!data.root.result.speed_can && <th className="number">NaN</th>} */}
-                <th className="number">
-                    {/* {data.root.result.items.auto_number} */}
-                </th>
+                <th className="number">{data[0].auto_number}</th>
                 {/* <th className="phone">+{data.root.phone_number}</th>
                 <th className="speed">{data.root.speed_can}</th>
                 <th className="id">{data.root.object_id}</th> */}
