@@ -17,7 +17,7 @@ type PropsType = {
 const Truck: React.FC<PropsType> = ({ data }) => {
     const navigate = useNavigate();
 
-    const { markPost } = useActions();
+    const { markTruck } = useActions();
 
     const marks = useSelector((state) => state.trucks.marks);
     const isMarked = marks.includes(data.object_id);
@@ -26,7 +26,7 @@ const Truck: React.FC<PropsType> = ({ data }) => {
         navigate(`/trucks/${data.object_id}`);
     };
 
-    const handleClickMark = () => markPost(data.object_id);
+    const handleClickMark = () => markTruck(data.object_id);
 
     return (
         <>

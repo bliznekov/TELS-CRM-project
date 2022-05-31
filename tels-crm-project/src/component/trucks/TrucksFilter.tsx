@@ -2,41 +2,41 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import TextField from "../ui/textField/TextField";
-import TrucksFilterType from "./TrucksFilterTypes";
-import { setLimit, setPage, setTruck } from "./TrucksActionCreators";
+import { useActions } from "../hooks/useActions";
+import { useSelector } from "../hooks/useSelector";
 
 type PropsType = {
     count: number;
-    state: TrucksFilterType;
-    dispatch: any;
 };
 
-const TrucksFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
+const TrucksFilter: React.FC<PropsType> = ({ count }) => {
+    const { setPage, setLimit, setTruck } = useActions();
+
+    const page = useSelector((state) => state.trucks.page);
+    const limit = useSelector((state) => state.trucks.limit);
+    const truck = useSelector((state) => state.trucks.truck);
+
     const handleChangeLimit = (event: SelectChangeEvent) => {
-        dispatch(setLimit(+event.target.value));
+        setLimit(+event.target.value);
     };
 
     const handleChangePage = (
         event: React.ChangeEvent<unknown>,
         value: number
     ) => {
-        dispatch(setPage(value));
+        setPage(value);
     };
 
     const updateTruck = (value: string) => {
-        dispatch(setTruck(value));
+        setTruck(value);
     };
 
     return (
         <div className="posts-container">
-            <TextField
-                label="Truck"
-                value={state.truck}
-                setValue={updateTruck}
-            />
+            <TextField label="Truck" value={truck} setValue={updateTruck} />
             <Select
                 label="Items per page"
-                value={state.limit.toString()}
+                value={limit.toString()}
                 onChange={handleChangeLimit}
             >
                 <MenuItem value={10}>10</MenuItem>
@@ -46,9 +46,9 @@ const TrucksFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
 
             <Pagination
                 className="pagination"
-                page={state.page}
+                page={page}
                 onChange={handleChangePage}
-                count={Math.ceil(count / state.limit)}
+                count={Math.ceil(count / limit)}
             />
         </div>
     );

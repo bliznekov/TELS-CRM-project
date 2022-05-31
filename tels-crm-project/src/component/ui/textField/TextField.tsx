@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import FormValuesType from "../../../types/FormValuesType";
 
 import c from "./TextField.module.scss";
 
