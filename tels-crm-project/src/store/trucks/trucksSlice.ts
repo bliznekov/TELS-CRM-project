@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Storage from "../../helpers/Storage";
 import TruckType from "../../types/truckType";
 import { fetchTrucks } from "./trucksThunks";
 
@@ -6,17 +7,28 @@ type StoreType = {
     data: TruckType[];
     loading: boolean;
     error?: string;
+    marks: number[];
 };
 
 const initialState: StoreType = {
     data: [],
     loading: false,
+    marks: Storage.get("marks", []),
 };
 
 const trucksSlice = createSlice({
     name: "trucks",
     initialState,
-    reducers: {},
+    reducers: {
+        markPost: (state, { payload: truckId }: PayloadAction<number>) => {
+            if (state.marks.includes(truckId)) {
+                state.marks = state.marks.filter((id) => id !== truckId);
+            } else {
+                state.marks.push(truckId);
+            }
+            Storage.set("marks", state.marks);
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchTrucks.pending, (state) => {
             state.loading = true;

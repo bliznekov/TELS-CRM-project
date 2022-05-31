@@ -1,6 +1,6 @@
 type TruckType = {
     auto_number?: string;
-    object_id?: number;
+    object_id: number;
     phone_number?: number;
     speed_can?: number;
     latitude?: number;

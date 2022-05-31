@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import usePost from "../../apiHooks/useTruck";
 import { useActions } from "../hooks/useActions";
 import { useSelector } from "../hooks/useSelector";
 

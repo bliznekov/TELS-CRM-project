@@ -4,7 +4,11 @@ import TruckType from "../../../types/truckType";
 import c from "./Truck.module.scss";
 import { ReactComponent as TruckIcon } from "./../../../assets/truckStop.svg";
 import { ReactComponent as TruckIconMove } from "./../../../assets/truckArrow.svg";
+import { ReactComponent as Plus } from "./../../../assets/plus.svg";
+import { ReactComponent as Check } from "./../../../assets/check.svg";
 import { useNavigate } from "react-router-dom";
+import { useActions } from "../../hooks/useActions";
+import { useSelector } from "../../hooks/useSelector";
 
 type PropsType = {
     data: TruckType;
@@ -13,13 +17,16 @@ type PropsType = {
 const Truck: React.FC<PropsType> = ({ data }) => {
     const navigate = useNavigate();
 
-    if (data.object_id === null || undefined) {
-        return null;
-    }
+    const { markPost } = useActions();
+
+    const marks = useSelector((state) => state.trucks.marks);
+    const isMarked = marks.includes(data.object_id);
 
     const handleClick = () => {
         navigate(`/trucks/${data.object_id}`);
     };
+
+    const handleClickMark = () => markPost(data.object_id);
 
     return (
         <>
@@ -37,6 +44,9 @@ const Truck: React.FC<PropsType> = ({ data }) => {
                     <th className="phone">+{data.phone_number}</th>
                     <th className="speed">{data.speed_can}</th>
                     <th className="speed">{data.object_uid}</th>
+                    <th className="svg" onClick={handleClickMark}>
+                        {!isMarked ? <Plus /> : <Check />}
+                    </th>
                 </tr>
             )}
         </>
