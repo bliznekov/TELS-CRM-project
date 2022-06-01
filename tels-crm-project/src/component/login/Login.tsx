@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getLoginError, getPasswordError } from "../../helpers/Validation";
 import FormValuesType from "../../types/FormValuesType";
 import { useActions } from "../hooks/useActions";
 import { useSelector } from "../hooks/useSelector";
@@ -10,18 +11,41 @@ import useTranslate from "../hooks/useTranslate";
 import c from "./Login.module.scss";
 
 const Login: React.FC = () => {
-    const [values, setValues] = useState<FormValuesType>({});
+    const [values, _setValues] = useState<FormValuesType>({});
+    const [validationsError, setValidationsError] = useState("");
+
     const { t } = useTranslate();
-    const { createTokens } = useActions();
+
+    const { createTokens, setAuthError, setAuthStatus } = useActions();
+
     const loading = useSelector((state) => state.auth.loading);
-    const error = useSelector((state) => state.auth.error);
+    const serverError = useSelector((state) => state.auth.error);
+    const authError = useSelector((state) => state.auth.status);
+    const error: string =
+        validationsError ||
+        (serverError ? "Ошибка сервера" : "") ||
+        (authError === "AUTHORIZATION_FAILED"
+            ? "Неверный логин или пароль"
+            : "");
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        createTokens(values);
-        console.log(values);
-        console.log(values);
-        console.log(values);
+        const validationError =
+            getLoginError(values.login) || getPasswordError(values.password);
+        if (validationError) {
+            setValidationsError(validationError);
+        } else {
+            createTokens(values);
+        }
+    };
+
+    const setValues = (
+        callback: (prevValue: FormValuesType) => FormValuesType
+    ) => {
+        _setValues(callback);
+        setValidationsError("");
+        setAuthError(false);
+        setAuthStatus("");
     };
 
     return (
@@ -42,11 +66,7 @@ const Login: React.FC = () => {
                     name="password"
                     setValues={setValues}
                 />
-                {error && (
-                    <div className="form-error">
-                        Введите верный логин или пароль
-                    </div>
-                )}
+                {error && <div className="form-error">{error}</div>}
                 <Button onClick={handleSubmit}>{t("login.submit")}</Button>
             </FormCard>
         </div>
