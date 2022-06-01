@@ -1,0 +1,54 @@
+.form-card-container {
+  background-color: var(--card-color);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 30px 2px var(--primary-color0);
+
+  .form-content {
+    &._loading {
+      filter: blur(3px);
+    }
+  }
+
+  .header {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-color2);
+    font-size: 30px;
+  }
+
+  .text-field-container {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  .loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+    opacity: .1;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+
+  .form-error {
+    color: #aa0000;
+    margin-bottom: 16px;
+  }
+}

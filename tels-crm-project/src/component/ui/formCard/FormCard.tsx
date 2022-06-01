@@ -1,6 +1,7 @@
 import React from "react";
+import { CircularProgress } from "@mui/material";
 
-import c from "./FormCard.module.scss";
+import "./FormCard.scss";
 
 type PropsType = {
     header?: string;
@@ -10,10 +11,16 @@ type PropsType = {
 
 const FormCard: React.FC<PropsType> = ({ header, children, loading }) => {
     return (
-        <form className={c.formCardContainer}>
-            {header && <div className={c.header}>{header}</div>}
-            {children}
-            {loading && <div className="loader">...</div>}
+        <form className="form-card-container">
+            <div className={`form-content ${loading ? "_loading" : ""}`}>
+                {header && <div className="header">{header}</div>}
+                {children}
+            </div>
+            {loading && (
+                <div className="loader">
+                    <CircularProgress />
+                </div>
+            )}
         </form>
     );
 };

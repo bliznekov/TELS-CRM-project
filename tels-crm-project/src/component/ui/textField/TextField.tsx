@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import c from "./TextField.module.scss";
+import "./TextField.scss";
 
 type PropsType = {
     autofocus?: boolean;
@@ -30,13 +30,13 @@ const TextField: React.FC<PropsType> = ({
     };
 
     return (
-        <div className={c.textFieldContainer}>
-            <div className={c.label}>{label}</div>
+        <div className="text-field-container">
+            <div className="label">{label}</div>
             <input
                 ref={nameRef}
                 value={value || ""}
                 onChange={handleChange}
-                className={c.input}
+                className="input"
                 type={type}
             />
         </div>
