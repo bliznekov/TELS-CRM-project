@@ -1,4 +1,8 @@
 .truckContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 15px;
+
   svg {
     width: 24px;
     height: 24px;

@@ -7,6 +7,8 @@ import FormCard from "../ui/formCard/FormCard";
 import FormTextField from "../ui/formTextField/FormTextField";
 import useTranslate from "../hooks/useTranslate";
 
+import c from "./Login.module.scss";
+
 const Login: React.FC = () => {
     const [values, setValues] = useState<FormValuesType>({});
     const { t } = useTranslate();
@@ -23,24 +25,31 @@ const Login: React.FC = () => {
     };
 
     return (
-        <FormCard header={t("login.label")}>
-            <FormTextField
-                autofocus={true}
-                label={t("login.login")}
-                type={"text"}
-                name="login"
-                values={values}
-                setValues={setValues}
-            />
-            <FormTextField
-                label={t("login.password")}
-                type={"password"}
-                values={values}
-                name="password"
-                setValues={setValues}
-            />
-            <Button onClick={handleSubmit}>{t("login.submit")}</Button>
-        </FormCard>
+        <div className={c.formContainer}>
+            <FormCard header={t("login.label")} loading={loading}>
+                <FormTextField
+                    autofocus={true}
+                    label={t("login.login")}
+                    type={"text"}
+                    name="login"
+                    values={values}
+                    setValues={setValues}
+                />
+                <FormTextField
+                    label={t("login.password")}
+                    type={"password"}
+                    values={values}
+                    name="password"
+                    setValues={setValues}
+                />
+                {error && (
+                    <div className="form-error">
+                        Введите верный логин или пароль
+                    </div>
+                )}
+                <Button onClick={handleSubmit}>{t("login.submit")}</Button>
+            </FormCard>
+        </div>
     );
 };
 

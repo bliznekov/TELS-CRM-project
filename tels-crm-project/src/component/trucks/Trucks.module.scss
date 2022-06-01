@@ -2,25 +2,12 @@
   padding-top: 80px;
   color: var(--primary-color2);
   margin: auto;
+  max-width: 100%;
 
   h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     text-transform: uppercase;
     text-align: center;
-  }
-
-  table,
-  th,
-  td {
-    border: 1px solid var(--primary-color2);
-    border-collapse: collapse;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-  }
-
-  th,
-  td {
-    padding: 8px;
   }
 }

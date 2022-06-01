@@ -31,23 +31,24 @@ const Truck: React.FC<PropsType> = ({ data }) => {
     return (
         <>
             {data.auto_number && (
-                <tr className={c.truckContainer}>
-                    <th className="svg" onClick={handleClick}>
+                <div className={c.truckContainer}>
+                    <div className="svg" onClick={handleClick}>
                         {!(data.speed_can === 0) ? (
                             <TruckIconMove />
                         ) : (
                             <TruckIcon />
                         )}
-                    </th>
-                    <th className="id">{data.object_id}</th>
-                    <th className="number">{data.auto_number}</th>
-                    <th className="phone">+{data.phone_number}</th>
-                    <th className="speed">{data.speed_can}</th>
-                    <th className="speed">{data.object_uid}</th>
-                    <th className="svg" onClick={handleClickMark}>
+                    </div>
+                    <div className="number">{data.auto_number}</div>
+                    <div className="phone">+{data.phone_number}</div>
+                    <div className="speed">{data.speed_can}</div>
+                    <div className="date">{data.datetime}</div>
+                    <div className="date">{data.latitude}</div>
+                    <div className="date">{data.longitude}</div>
+                    <div className="svg" onClick={handleClickMark}>
                         {!isMarked ? <Plus /> : <Check />}
-                    </th>
-                </tr>
+                    </div>
+                </div>
             )}
         </>
     );

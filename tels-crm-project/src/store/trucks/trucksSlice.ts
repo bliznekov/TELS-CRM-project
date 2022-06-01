@@ -11,6 +11,7 @@ type StoreType = {
     limit: number;
     truck?: string;
     marks: number[];
+    mode?: number;
 };
 
 const initialState: StoreType = {
@@ -20,6 +21,7 @@ const initialState: StoreType = {
     limit: 10,
     truck: "",
     marks: Storage.get("marks", []),
+    mode: 0,
 };
 
 const trucksSlice = createSlice({
@@ -47,6 +49,10 @@ const trucksSlice = createSlice({
                 state.truck = truck;
                 state.page = 1;
             }
+        },
+        setMode: (state, { payload: mode }: PayloadAction<number>) => {
+            state.page = 1;
+            state.mode = mode;
         },
     },
     extraReducers: (builder) => {

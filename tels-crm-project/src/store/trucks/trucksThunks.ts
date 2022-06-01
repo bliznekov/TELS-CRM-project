@@ -3,7 +3,7 @@ import axios from "axios";
 import TrukType from "../../types/truckType";
 
 const URL =
-    '/info/integration.php?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&string="json"&get_en_address="true"';
+    '/info/integration.php?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&string="json"';
 
 type FetchTrucksType = {
     data: TrukType[];
