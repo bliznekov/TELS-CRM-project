@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Pagination from "@mui/material/Pagination";
-import { MenuItem, Paper, SelectChangeEvent } from "@mui/material";
+import { MenuItem, Paper } from "@mui/material";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import TextField from "../ui/textField/TextField";
 import Select from "../ui/select/Select";

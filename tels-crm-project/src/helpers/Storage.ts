@@ -12,9 +12,14 @@ const set = (key: string, data: any) => {
     } catch {}
 };
 
+const remove = (key: string) => {
+    localStorage.removeItem(key);
+};
+
 const Storage = {
     get,
     set,
+    remove,
 };
 
 export default Storage;

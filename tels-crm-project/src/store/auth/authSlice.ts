@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Storage from "../../helpers/Storage";
 import { createTokens } from "./authThunks";
 
 type StoreType = {
@@ -6,11 +7,14 @@ type StoreType = {
     status?: string;
     loading: boolean;
     error: boolean;
+    logged: boolean;
 };
 
 const initialState: StoreType = {
     loading: false,
     error: false,
+    token: Storage.get("token", undefined),
+    logged: Storage.get("token", false),
 };
 
 const authSlice = createSlice({
@@ -22,6 +26,12 @@ const authSlice = createSlice({
         },
         setAuthStatus: (state, { payload }: PayloadAction<string>) => {
             state.status = payload;
+        },
+        logout: (state) => {
+            state.token = undefined;
+            state.logged = false;
+
+            Storage.remove("token");
         },
     },
     extraReducers: (builder) => {
@@ -39,6 +49,9 @@ const authSlice = createSlice({
             state.loading = false;
             state.token = payload.token;
             state.status = payload.status;
+            state.logged = true;
+
+            Storage.set("token", payload.token);
         });
     },
 });
