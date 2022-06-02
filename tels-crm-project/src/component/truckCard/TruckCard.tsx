@@ -9,11 +9,12 @@ const TruckCard: React.FC = () => {
     const data = useSelector((state) => state.truck.data);
     const loading = useSelector((state) => state.truck.loading);
     const error = useSelector((state) => state.truck.error);
+    const token = useSelector((state) => state.auth.token);
 
     const { fetchTruck } = useActions();
 
     useEffect(() => {
-        fetchTruck(id);
+        fetchTruck({ id, token });
     }, [id]);
 
     if (loading) {

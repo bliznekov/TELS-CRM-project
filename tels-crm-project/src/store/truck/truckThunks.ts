@@ -2,18 +2,22 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import TrukType from "../../types/truckType";
 
-const URL =
-    '/info/integration.php?type=CURRENT_POSITION&token=c5da23c0-5569-4707-9e4a-d4d3777222a8&string="json"&object_id=';
+const URL = "/info/integration.php?type=CURRENT_POSITION&token=";
 type FetchTruckType = {
     data: TrukType[];
 };
 
+type TruckFilterType = {
+    id?: string;
+    token?: string;
+};
+
 export const fetchTruck = createAsyncThunk<
     FetchTruckType,
-    string | undefined,
+    TruckFilterType,
     { rejectValue: string }
->("truck/fetchTruck", async (id, thunkApi) => {
-    let url = `${URL}${id}`;
+>("truck/fetchTruck", async ({ id, token }, thunkApi) => {
+    let url = `${URL}${token}&string="json"&object_id=${id}`;
     try {
         const response = await axios.get(url);
         return {

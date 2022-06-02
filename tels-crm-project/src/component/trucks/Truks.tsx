@@ -18,6 +18,8 @@ const Truks: React.FC<PropsType> = () => {
     const limit = useSelector((state) => state.trucks.limit);
     const truck = useSelector((state) => state.trucks.truck);
     const mode = useSelector((state) => state.trucks.mode);
+    const token = useSelector((state) => state.auth.token);
+
     const filterdData = data
         .filter((item, index) => data.indexOf(item) === index)
         .filter((item) => {
@@ -30,8 +32,8 @@ const Truks: React.FC<PropsType> = () => {
         });
     const paginationData = filterdData.slice(limit * (page - 1), limit * page);
     useEffect(() => {
-        fetchTrucks(truck);
-    }, [truck]);
+        fetchTrucks({ truck, token });
+    }, [truck, token]);
 
     return (
         <div className={c.trucksContainer}>

@@ -14,7 +14,7 @@ const initialState: StoreType = {
     loading: false,
     error: false,
     token: Storage.get("token", undefined),
-    logged: Storage.get("token", false),
+    logged: Storage.get("logged", false),
 };
 
 const authSlice = createSlice({
@@ -30,8 +30,10 @@ const authSlice = createSlice({
         logout: (state) => {
             state.token = undefined;
             state.logged = false;
+            state.status = undefined;
 
             Storage.remove("token");
+            Storage.remove("logged");
         },
     },
     extraReducers: (builder) => {
@@ -49,9 +51,11 @@ const authSlice = createSlice({
             state.loading = false;
             state.token = payload.token;
             state.status = payload.status;
-            state.logged = true;
-
-            Storage.set("token", payload.token);
+            if (state.status === "OK") {
+                state.logged = true;
+                Storage.set("token", payload.token);
+                Storage.set("logged", state.logged);
+            }
         });
     },
 });
