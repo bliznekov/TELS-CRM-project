@@ -1,13 +1,11 @@
 .app-container {
   background-color: var(--background-color);
   min-height: 100vh;
-  display: flex;
   flex-direction: column;
 
   .center-content {
     max-width: 1270px;
     height: 100%;
-    display: flex;
     margin: auto;
   }
 }

@@ -5,5 +5,15 @@
     "login.submit": "Войти",
     "nav.info": "Информация",
     "nav.login": "Вход",
-    "nav.trucks": "Автомобили"
+    "nav.trucks": "Автомобили",
+    "trucks.head": "Автомобили",
+    "trucks.number": "Номер авто",
+    "trucks.phone": "Телефон",
+    "trucks.speed": "Скорось",
+    "trucks.date": "Дата",
+    "trucks.coor": "Координаты",
+    "trucks.filter.toggle.all": "Все",
+    "trucks.filter.toggle.marked": "Закладки",
+    "trucks.filter.textfield": "Поиск авто",
+    "trucks.filter.select": "Авто на странице"
 }

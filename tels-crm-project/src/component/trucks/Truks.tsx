@@ -3,12 +3,19 @@ import { useSelector } from "../hooks/useSelector";
 import { useActions } from "../hooks/useActions";
 import Truck from "./truck/Truck";
 import TrucksFilter, { Mode } from "./TrucksFilter";
+
+import { ReactComponent as Mark } from "./../../assets/bookmarkHead.svg";
+import { ReactComponent as TruckHead } from "./../../assets/truckHead.svg";
 import c from "./Trucks.module.scss";
+import { LinearProgress } from "@mui/material";
+import useTranslate from "../hooks/useTranslate";
 
 type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
     const { fetchTrucks } = useActions();
+
+    const { t } = useTranslate();
 
     const data = useSelector((state) => state.trucks.data);
     const loading = useSelector((state) => state.trucks.loading);
@@ -37,19 +44,26 @@ const Truks: React.FC<PropsType> = () => {
 
     return (
         <div className={c.trucksContainer}>
-            <h2>Автомобили</h2>
+            <h2>{t("trucks.head")}</h2>
             <TrucksFilter count={filterdData.length} />
 
-            <div>
-                <div>Id</div>
-                <div>Truck number</div>
-                <div>Phone number</div>
-                <div>Speed</div>
-            </div>
+            <ul className={c.trucksHeader}>
+                <li className={c.svg}>
+                    <TruckHead />
+                </li>
+                <li className={c.number}>{t("trucks.number")}</li>
+                <li className={c.phone}>{t("trucks.phone")}</li>
+                <li className={c.speed}>{t("trucks.speed")}</li>
+                <li className={c.date}>{t("trucks.date")}</li>
+                <li className={c.cors}>{t("trucks.coor")}</li>
+                <li className={c.svgMark}>
+                    <Mark />
+                </li>
+            </ul>
             {paginationData.map((item) => (
                 <Truck key={item.object_id} data={item} />
             ))}
-            {loading && "Loading..."}
+            {loading && <LinearProgress color="warning" />}
             {error}
         </div>
     );

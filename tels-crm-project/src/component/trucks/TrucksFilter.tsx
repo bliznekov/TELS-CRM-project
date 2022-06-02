@@ -8,6 +8,7 @@ import { useActions } from "../hooks/useActions";
 import { useSelector } from "../hooks/useSelector";
 
 import c from "./TrucksFilter.module.scss";
+import useTranslate from "../hooks/useTranslate";
 
 type PropsType = {
     count: number;
@@ -19,9 +20,9 @@ export enum Mode {
 }
 
 const TrucksFilter: React.FC<PropsType> = ({ count }) => {
-    // const [mode, setMode] = useState(Mode.ALL);
-
     const { setPage, setLimit, setTruck, setMode } = useActions();
+
+    const { t } = useTranslate();
 
     const page = useSelector((state) => state.trucks.page);
     const limit = useSelector((state) => state.trucks.limit);
@@ -53,25 +54,44 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
 
     return (
         <Paper elevation={3} className={c.postsFilterContainer}>
-            <TextField label="Truck" value={truck} setValue={updateTruck} />
-            <Select
-                label="Items per page"
-                value={limit.toString()}
-                setValue={handleChangeLimit}
-            >
-                <MenuItem value={10}>10</MenuItem>
-                <MenuItem value={20}>20</MenuItem>
-                <MenuItem value={30}>30</MenuItem>
-            </Select>
-            <ToggleButtonGroup
-                value={mode}
-                exclusive
-                onChange={handleToggleMode}
-            >
-                <ToggleButton value={Mode.ALL}>All</ToggleButton>
-                <ToggleButton value={Mode.MARKED}>Marked</ToggleButton>
-            </ToggleButtonGroup>
-
+            <div className={c.filterContainer}>
+                <ul>
+                    <li>
+                        <TextField
+                            label={t("trucks.filter.textfield")}
+                            value={truck}
+                            setValue={updateTruck}
+                        />
+                    </li>
+                    <li>
+                        <Select
+                            label={t("trucks.filter.select")}
+                            value={limit.toString()}
+                            setValue={handleChangeLimit}
+                        >
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                        </Select>
+                    </li>
+                    <li>
+                        <ToggleButtonGroup
+                            value={mode}
+                            exclusive
+                            onChange={handleToggleMode}
+                            size="small"
+                            color="warning"
+                        >
+                            <ToggleButton value={Mode.ALL}>
+                                {t("trucks.filter.toggle.all")}
+                            </ToggleButton>
+                            <ToggleButton value={Mode.MARKED}>
+                                {t("trucks.filter.toggle.marked")}
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                    </li>
+                </ul>
+            </div>
             <Pagination
                 className="pagination"
                 page={page}

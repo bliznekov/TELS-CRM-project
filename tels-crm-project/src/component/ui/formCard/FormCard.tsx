@@ -18,7 +18,7 @@ const FormCard: React.FC<PropsType> = ({ header, children, loading }) => {
             </div>
             {loading && (
                 <div className="loader">
-                    <CircularProgress />
+                    <CircularProgress color="warning" />
                 </div>
             )}
         </form>

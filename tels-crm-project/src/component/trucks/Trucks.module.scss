@@ -4,10 +4,61 @@
   margin: auto;
   max-width: 100%;
 
+  .trucksHeader {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-color2);
+    font-size: 15px;
+    align-items: center;
+    padding-inline-start: 0;
+    padding: 10px;
+    margin: 15px 15px;
+
+    li {
+      width: 150px;
+      text-align: center;
+      margin: 15px;
+    }
+
+    .date {
+      width: 200px;
+    }
+
+    .cors {
+      width: 200px;
+    }
+
+    .svgMark {
+      width: 15px;
+      height: 15px;
+      margin-right: 20px;
+
+      path {
+        fill: var(--primary-color2);
+      }
+    }
+
+    .svg {
+      width: 24px;
+      height: 24px;
+
+      path {
+        fill: var(--primary-color2);
+      }
+    }
+  }
+
   h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
     text-transform: uppercase;
     text-align: center;
+  }
+
+  .MuiLinearProgress-root {
+    color: var(--primary-color2);
   }
 }

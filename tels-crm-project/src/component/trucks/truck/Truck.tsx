@@ -32,22 +32,29 @@ const Truck: React.FC<PropsType> = ({ data }) => {
         <>
             {data.auto_number && (
                 <div className={c.truckContainer}>
-                    <div className="svg" onClick={handleClick}>
-                        {!(data.speed_can === 0) ? (
-                            <TruckIconMove />
-                        ) : (
-                            <TruckIcon />
-                        )}
-                    </div>
-                    <div className="number">{data.auto_number}</div>
-                    <div className="phone">+{data.phone_number}</div>
-                    <div className="speed">{data.speed_can}</div>
-                    <div className="date">{data.datetime}</div>
-                    <div className="date">{data.latitude}</div>
-                    <div className="date">{data.longitude}</div>
-                    <div className="svg" onClick={handleClickMark}>
-                        {!isMarked ? <Plus /> : <Check />}
-                    </div>
+                    <ul>
+                        <li className={c.svg} onClick={handleClick}>
+                            {data.speed_can === 0 ? (
+                                <TruckIcon />
+                            ) : data.speed_can === undefined ? (
+                                <TruckIcon />
+                            ) : (
+                                <TruckIconMove />
+                            )}
+                        </li>
+                        <li className={c.number}>{data.auto_number}</li>
+                        <li className={c.phone}>+{data.phone_number}</li>
+                        <li className={c.speed}>
+                            {data.speed_can === undefined ? 0 : data.speed_can}
+                        </li>
+                        <li className={c.date}>{data.datetime}</li>
+                        <li className={c.cors}>
+                            {data.latitude}, {data.longitude}
+                        </li>
+                        <li className={c.svg} onClick={handleClickMark}>
+                            {!isMarked ? <Plus /> : <Check />}
+                        </li>
+                    </ul>
                 </div>
             )}
         </>
