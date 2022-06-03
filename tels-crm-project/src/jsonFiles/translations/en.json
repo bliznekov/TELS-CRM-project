@@ -33,5 +33,8 @@
     "login.error.server": "Server Error",
     "login.error.loginPass": "Incorrect login or password",
     "validadion.login": "Login is not valid",
-    "validadion.password": "Password is not valid"
+    "validadion.password": "Password is not valid",
+    "truckCard.tittle": "Truck",
+    "truckCard.country": "Country",
+    "truckCard.adress": "Adress"
 }

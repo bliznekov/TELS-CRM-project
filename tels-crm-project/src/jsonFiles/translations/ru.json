@@ -9,7 +9,7 @@
     "trucks.head": "Автомобили",
     "trucks.number": "Номер авто",
     "trucks.phone": "Телефон",
-    "trucks.speed": "Скорось",
+    "trucks.speed": "Скорость",
     "trucks.date": "Дата",
     "trucks.coor": "Координаты",
     "trucks.filter.toggle.all": "Все",
@@ -33,5 +33,8 @@
     "login.error.server": "Ошибка сервера",
     "login.error.loginPass": "Неверный логин или пароль",
     "validadion.login": "Неверный логин",
-    "validadion.password": "Неверный пароль"
+    "validadion.password": "Неверный пароль",
+    "truckCard.tittle": "Автомобиль",
+    "truckCard.country": "Страна",
+    "truckCard.adress": "Адрес"
 }

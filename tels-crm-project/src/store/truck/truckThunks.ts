@@ -17,7 +17,7 @@ export const fetchTruck = createAsyncThunk<
     TruckFilterType,
     { rejectValue: string }
 >("truck/fetchTruck", async ({ id, token }, thunkApi) => {
-    let url = `${URL}${token}&string="json"&object_id=${id}`;
+    let url = `${URL}${token}&string="json"&object_id=${id}&get_en_address=true&get_address=true`;
     try {
         const response = await axios.get(url);
         return {

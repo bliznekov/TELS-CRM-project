@@ -18,10 +18,10 @@ export const fetchTrucks = createAsyncThunk<
     TrucksFilterType,
     { rejectValue: string }
 >("trucks/fetchTrucks", async ({ truck, token }, thunkApi) => {
-    let url = `${URL}${token}&string="json"&get_en_address="true"`;
+    let url = `${URL}${token}&string="json"`;
 
     if (truck) {
-        url = `${URL}${token}&string="json"&get_en_address="true"&name_filter=${truck}`;
+        url = `${URL}${token}&string="json"&name_filter=${truck}`;
     }
 
     try {

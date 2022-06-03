@@ -8,6 +8,8 @@ type TruckType = {
     datetime?: string;
     latitude?: string;
     longitude?: string;
+    place?: string;
+    country_shot?: string;
 };
 
 export default TruckType;
