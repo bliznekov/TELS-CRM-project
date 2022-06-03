@@ -23,17 +23,17 @@ const Login: React.FC = () => {
     const authError = useSelector((state) => state.auth.status);
     const error: string =
         validationsError ||
-        (serverError ? "Ошибка сервера" : "") ||
+        (serverError ? t("login.error.server") : "") ||
         (authError === "AUTHORIZATION_FAILED"
-            ? "Неверный логин или пароль"
+            ? t("login.error.loginPass")
             : "");
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        const validationError =
-            getLoginError(values.login) || getPasswordError(values.password);
-        if (validationError) {
-            setValidationsError(validationError);
+        if (getLoginError(values.login)) {
+            setValidationsError(t("validadion.login"));
+        } else if (getPasswordError(values.password)) {
+            setValidationsError(t("validadion.password"));
         } else {
             createTokens(values);
         }

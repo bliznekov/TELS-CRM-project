@@ -1,7 +1,11 @@
-export const getLoginError = (value: string): string => {
-    return value.length < 3 ? "Login is not valid" : "";
+import useTranslate from "../component/hooks/useTranslate";
+
+export const getLoginError = (value: string): boolean => {
+    let re = /^[A-Za-z0-9]{2,10}$/;
+    return !re.test(value) ? true : false;
 };
 
-export const getPasswordError = (value: string): string => {
-    return value.length < 4 ? "Password is not valid" : "";
+export const getPasswordError = (value: string): boolean => {
+    let re = /^[A-Za-z0-9]{4,10}$/;
+    return !re.test(value) ? true : false;
 };

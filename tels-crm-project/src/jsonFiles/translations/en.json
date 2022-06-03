@@ -29,5 +29,9 @@
     "info.info.chat.span": "We speak Chinese,",
     "info.info.chat": " English and German",
     "info.info.span.inshurance": "Besides CMR insurance in the amount of 730,000 EUR, we also offer insurance on the terms – ",
-    "info.info.inshurance": "“Responsibility for any risk”"
+    "info.info.inshurance": "“Responsibility for any risk”",
+    "login.error.server": "Server Error",
+    "login.error.loginPass": "Incorrect login or password",
+    "validadion.login": "Login is not valid",
+    "validadion.password": "Password is not valid"
 }
