@@ -6,12 +6,12 @@
   right: 0;
   background-color: var(--primary-color0);
   box-shadow: 0px 0px 8px 1px var(--primary-color0);
+  z-index: 999;
 
   .container {
     padding: 0 10px;
     max-width: 1270px;
     margin: auto;
-    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,23 +64,41 @@
       }
     }
 
-    .langButton {
-      font-family: 'Montserrat', sans-serif;
-      text-transform: uppercase;
-      color: var(--text-color);
-      margin-left: 24px;
-      cursor: pointer;
-      height: 24px;
-      width: 24px;
-      border: none;
-      outline: none;
-      padding: 0;
-      background-color: rgba(28, 28, 28, 0);
-      transition: 0.5s;
+    .controls {
+      display: flex;
 
-      &:hover {
-        font-weight: bold;
-        color: var(--primary-color2);
+      .logoutButton {
+        width: 25px;
+        cursor: pointer;
+
+        path {
+          fill: var(--text-color);
+          transition: 0.5s;
+
+          &:hover {
+            fill: var(--primary-color2);
+          }
+        }
+      }
+
+      .langButton {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        color: var(--text-color);
+        margin-left: 24px;
+        cursor: pointer;
+        height: 24px;
+        width: 24px;
+        border: none;
+        outline: none;
+        padding: 0;
+        background-color: rgba(28, 28, 28, 0);
+        transition: 0.5s;
+
+        &:hover {
+          font-weight: bold;
+          color: var(--primary-color2);
+        }
       }
     }
   }

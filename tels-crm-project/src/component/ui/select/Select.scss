@@ -1,0 +1,42 @@
+.select-container {
+  flex-grow: 1;
+  min-width: 200px;
+
+  .label {
+    margin-bottom: 4px;
+    color: var(--primary-color2);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-size: 16px;
+  }
+
+  * {
+    border: none !important;
+    outline: none !important;
+  }
+
+  .MuiSelect-select {
+    border: 1px solid var(--primary-color0) !important;
+    border-radius: 16px !important;
+    padding: 8px 16px;
+    height: 16px !important;
+    min-height: 16px !important;
+    line-height: initial;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: var(--primary-color2);
+    transition: 0.5s;
+
+
+    &:hover {
+      border-color: var(--primary-color2) !important;
+    }
+
+    &[aria-expanded="true"] {
+      border-color: var(--primary-color1);
+      outline: 1px solid var(--primary-color1) !important;
+    }
+  }
+}

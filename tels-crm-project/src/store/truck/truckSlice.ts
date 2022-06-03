@@ -9,7 +9,7 @@ type StoreType = {
 };
 
 const initialState: StoreType = {
-    data: [{}],
+    data: [{ object_id: 1 }],
     loading: false,
 };
 

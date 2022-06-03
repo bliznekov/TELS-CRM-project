@@ -1,17 +1,26 @@
 import React from "react";
+import { CircularProgress } from "@mui/material";
 
-import c from "./FormCard.module.scss";
+import "./FormCard.scss";
 
 type PropsType = {
     header?: string;
+    loading?: boolean;
     children: React.ReactNode;
 };
 
-const FormCard: React.FC<PropsType> = ({ header, children }) => {
+const FormCard: React.FC<PropsType> = ({ header, children, loading }) => {
     return (
-        <form className={c.formCardContainer}>
-            {header && <div className={c.header}>{header}</div>}
-            {children}
+        <form className="form-card-container">
+            <div className={`form-content ${loading ? "_loading" : ""}`}>
+                {header && <div className="header">{header}</div>}
+                {children}
+            </div>
+            {loading && (
+                <div className="loader">
+                    <CircularProgress color="warning" />
+                </div>
+            )}
         </form>
     );
 };

@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Storage from "../../helpers/Storage";
 import TruckType from "../../types/truckType";
 import { fetchTrucks } from "./trucksThunks";
 
@@ -6,17 +7,54 @@ type StoreType = {
     data: TruckType[];
     loading: boolean;
     error?: string;
+    page: number;
+    limit: number;
+    truck?: string;
+    marks: number[];
+    mode?: number;
 };
 
 const initialState: StoreType = {
     data: [],
     loading: false,
+    page: 1,
+    limit: 10,
+    truck: "",
+    marks: Storage.get("marks", []),
+    mode: 0,
 };
 
 const trucksSlice = createSlice({
     name: "trucks",
     initialState,
-    reducers: {},
+    reducers: {
+        markTruck: (state, { payload: truckId }: PayloadAction<number>) => {
+            if (state.marks.includes(truckId)) {
+                state.marks = state.marks.filter((id) => id !== truckId);
+            } else {
+                state.marks.push(truckId);
+            }
+            Storage.set("marks", state.marks);
+        },
+        setPage: (state, { payload: page }: PayloadAction<number>) => {
+            state.page = page;
+        },
+        setLimit: (state, { payload: limit }: PayloadAction<number>) => {
+            state.page = 1;
+            state.limit = limit;
+        },
+        setTruck: (state, { payload: truck }: PayloadAction<string>) => {
+            let re = /^[A-Za-z0-9]{0,8}$/;
+            if (re.test(truck)) {
+                state.truck = truck;
+                state.page = 1;
+            }
+        },
+        setMode: (state, { payload: mode }: PayloadAction<number>) => {
+            state.page = 1;
+            state.mode = mode;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchTrucks.pending, (state) => {
             state.loading = true;

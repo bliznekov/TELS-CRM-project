@@ -1,20 +1,30 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useTranslate from "../hooks/useTranslate";
 
 import c from "./Header.module.scss";
 import LogoIcon from "../../assets/logo.png";
+import { ReactComponent as LogoutIcon } from "../../assets/logout.svg";
+import { ReactComponent as LoginIcon } from "../../assets/login.svg";
+import { useSelector } from "../hooks/useSelector";
+import { useActions } from "../hooks/useActions";
 
-const getLinks = [
+const getLinks = (logged: boolean) => [
     { url: "/info", text: "nav.info" },
-    { url: "/trucks", text: "nav.trucks" },
-    { url: "/login", text: "nav.login" },
+    ...(!logged ? [] : [{ url: "/trucks", text: "nav.trucks" }]),
 ];
 
 const Header: React.FC = () => {
     const { t, lang, setLang } = useTranslate();
     const nextLang = lang === "en" ? "ru" : "en";
-    const links = getLinks;
+
+    const logged = useSelector((state) => state.auth.logged);
+    const { logout } = useActions();
+    const links = getLinks(logged);
+
+    const handleLogout = () => {
+        logout();
+    };
 
     return (
         <nav className={c.headerContainer}>
@@ -38,12 +48,29 @@ const Header: React.FC = () => {
                         </li>
                     ))}
                 </ul>
-                <button
-                    className={c.langButton}
-                    onClick={() => setLang(nextLang)}
-                >
-                    {nextLang}
-                </button>
+                <div className={c.controls}>
+                    {logged ? (
+                        <>
+                            <LogoutIcon
+                                className={c.logoutButton}
+                                onClick={handleLogout}
+                            />
+                        </>
+                    ) : (
+                        <Link to="/login">
+                            <LoginIcon
+                                className={c.logoutButton}
+                                onClick={handleLogout}
+                            />
+                        </Link>
+                    )}
+                    <button
+                        className={c.langButton}
+                        onClick={() => setLang(nextLang)}
+                    >
+                        {nextLang}
+                    </button>
+                </div>
             </div>
         </nav>
     );

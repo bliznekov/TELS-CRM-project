@@ -1,10 +1,57 @@
 .truckContainer {
-  svg {
-    width: 24px;
-    height: 24px;
+  background-color: var(--card-color);
+  border-radius: 16px;
+  padding: 10px;
+  margin: 15px 15px;
+  border: 1px solid var(--primary-color0);
+  transition: 0.5s;
 
-    path {
-      fill: var(--primary-color2);
+  &:hover {
+    border: 1px solid var(--primary-color2);
+    transform: scale(1.05);
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--primary-color2);
+    font-size: 15px;
+    align-items: center;
+    padding-inline-start: 0;
+
+    li {
+      width: 150px;
+      text-align: center;
+    }
+
+    .date {
+      width: 200px;
+    }
+
+    .cors {
+      width: 200px;
+    }
+
+    .svg {
+      width: 24px;
+      height: 24px;
+
+      cursor: pointer;
+
+      &:hover {
+        path {
+          fill: var(--primary-color0);
+        }
+      }
+
+      path {
+        fill: var(--primary-color2);
+        transition: 0.5s;
+      }
     }
   }
 }

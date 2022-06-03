@@ -1,0 +1,26 @@
+.postsFilterContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 24px;
+  flex-wrap: wrap;
+
+  .filterContainer ul {
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-around;
+
+    li {
+      margin: 0 15px;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+  }
+
+  nav {
+    margin: 16px 10px;
+  }
+}
