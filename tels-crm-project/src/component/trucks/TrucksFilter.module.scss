@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
-  padding: 24px;
+  padding: 5px;
   flex-wrap: wrap;
 
   .filterContainer ul {
@@ -20,7 +20,16 @@
     }
   }
 
-  nav {
-    margin: 16px 10px;
+  .paginationContainer ul {
+    display: flex;
+    padding: 0 15px;
+    justify-content: end;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
   }
+
 }

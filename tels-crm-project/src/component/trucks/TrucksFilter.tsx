@@ -72,17 +72,6 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                         />
                     </li>
                     <li>
-                        <Select
-                            label={t("trucks.filter.select")}
-                            value={limit.toString()}
-                            setValue={handleChangeLimit}
-                        >
-                            <MenuItem value={10}>10</MenuItem>
-                            <MenuItem value={20}>20</MenuItem>
-                            <MenuItem value={30}>30</MenuItem>
-                        </Select>
-                    </li>
-                    <li>
                         <ToggleButtonGroup
                             value={mode}
                             exclusive
@@ -100,12 +89,29 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                     </li>
                 </ul>
             </div>
-            <Pagination
-                className="pagination"
-                page={page}
-                onChange={handleChangePage}
-                count={Math.ceil(count / limit)}
-            />
+            <div className={c.paginationContainer}>
+                <ul>
+                    <li>
+                        <Pagination
+                            className="pagination"
+                            page={page}
+                            onChange={handleChangePage}
+                            count={Math.ceil(count / limit)}
+                        />
+                    </li>
+                    <li>
+                        <Select
+                            label={t("trucks.filter.select")}
+                            value={limit.toString()}
+                            setValue={handleChangeLimit}
+                        >
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                        </Select>
+                    </li>
+                </ul>
+            </div>
         </Paper>
     );
 };

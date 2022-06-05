@@ -31,11 +31,11 @@ const Info: React.FC = () => {
                         <h3>{t("info.subtittle")}</h3>
                         <div>
                             {logged ? (
-                                <>
-                                    <Button onClick={handleSubmit}>
-                                        {t("info.button.finish")}
+                                <Link to="/trucks">
+                                    <Button onClick={handleSubmit} pulse>
+                                        {t("info.button.trucks")}
                                     </Button>
-                                </>
+                                </Link>
                             ) : (
                                 <Link to="/login">
                                     <Button onClick={handleSubmit} pulse>
