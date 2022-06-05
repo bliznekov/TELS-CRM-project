@@ -21,3 +21,17 @@
     background-color: var(--primary-color1);
   }
 }
+
+.pulse {
+  animation: pulsante 1.5s infinite;
+}
+
+@keyframes pulsante {
+  0% {
+    box-shadow: var(--primary-color0) 0 0 0 0;
+  }
+
+  100% {
+    box-shadow: var(--primary-color000) 0 0 0 16px;
+  }
+}

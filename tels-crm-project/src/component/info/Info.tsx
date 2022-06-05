@@ -38,7 +38,7 @@ const Info: React.FC = () => {
                                 </>
                             ) : (
                                 <Link to="/login">
-                                    <Button onClick={handleSubmit}>
+                                    <Button onClick={handleSubmit} pulse>
                                         {t("info.button.start")}
                                     </Button>
                                 </Link>
