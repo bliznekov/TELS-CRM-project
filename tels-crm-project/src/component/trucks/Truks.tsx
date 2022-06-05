@@ -3,6 +3,8 @@ import { useSelector } from "../hooks/useSelector";
 import { useActions } from "../hooks/useActions";
 import Truck from "./truck/Truck";
 import TrucksFilter, { Mode } from "./TrucksFilter";
+import { AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
 
 import { ReactComponent as Mark } from "./../../assets/bookmarkHead.svg";
 import { ReactComponent as TruckHead } from "./../../assets/truckHead.svg";
@@ -14,6 +16,7 @@ type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
     const { fetchTrucks } = useActions();
+    const dispatch: AppDispatch = useDispatch();
 
     const { t } = useTranslate();
 
@@ -39,7 +42,10 @@ const Truks: React.FC<PropsType> = () => {
         });
     const paginationData = filterdData.slice(limit * (page - 1), limit * page);
     useEffect(() => {
-        fetchTrucks({ truck, token });
+        const promise = dispatch(fetchTrucks({ truck, token }));
+        return () => {
+            promise.abort();
+        };
     }, [truck, token]);
 
     return (
