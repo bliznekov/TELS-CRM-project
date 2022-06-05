@@ -2,6 +2,7 @@ import { LinearProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Flag from "react-world-flags";
+import TruckType from "../../types/truckType";
 import { useActions } from "../hooks/useActions";
 import { useSelector } from "../hooks/useSelector";
 import useTranslate from "../hooks/useTranslate";
@@ -73,7 +74,11 @@ const TruckCard: React.FC = () => {
                         </div>
                     </li>
                 </ul>
-                <Map />
+                <Map
+                    latitude={data[0].latitude}
+                    longitude={data[0].longitude}
+                    number={data[0].auto_number}
+                />
             </div>
         </div>
     );

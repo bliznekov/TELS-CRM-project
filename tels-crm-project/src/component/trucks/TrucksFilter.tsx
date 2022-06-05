@@ -40,16 +40,16 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
         setPage(value);
     };
 
-    let str = "";
-    let timer: NodeJS.Timeout;
+    // let str = "";
+    // let timer: NodeJS.Timeout;
 
     const updateTruck = (value: string) => {
-        str += value;
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            setTruck(value);
-            str = "";
-        }, 500);
+        // str += value;
+        // clearTimeout(timer);
+        // timer = setTimeout(() => {
+        setTruck(value);
+        //     str = "";
+        // }, 500);
     };
 
     const handleToggleMode = (

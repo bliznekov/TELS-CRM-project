@@ -16,7 +16,7 @@ type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
     const { fetchTrucks } = useActions();
-    const dispatch: AppDispatch = useDispatch();
+    // const dispatch: AppDispatch = useDispatch();
 
     const { t } = useTranslate();
 
@@ -42,10 +42,11 @@ const Truks: React.FC<PropsType> = () => {
         });
     const paginationData = filterdData.slice(limit * (page - 1), limit * page);
     useEffect(() => {
-        const promise = dispatch(fetchTrucks({ truck, token }));
-        return () => {
-            promise.abort();
-        };
+        // const promise = dispatch(fetchTrucks({ truck, token }));
+        // return () => {
+        //     promise.abort();
+        // };
+        fetchTrucks({ truck, token });
     }, [truck, token]);
 
     return (
