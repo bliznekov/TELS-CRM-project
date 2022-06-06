@@ -16,19 +16,19 @@
       margin: 0 15px;
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: flex-end;
     }
   }
 
   .paginationContainer ul {
     display: flex;
+    align-items: flex-end;
     padding: 0 15px;
-    justify-content: end;
 
     li {
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: flex-end;
     }
   }
 
