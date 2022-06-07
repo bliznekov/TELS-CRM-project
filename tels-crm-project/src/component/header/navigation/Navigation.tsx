@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "../../hooks/useSelector";
 import useTranslate from "../../hooks/useTranslate";
 
-import c from "./../Header.module.scss";
+import c from "./Navigation.module.scss";
 
 const getLinks = (logged: boolean) => [
     { url: "/info", text: "nav.info" },

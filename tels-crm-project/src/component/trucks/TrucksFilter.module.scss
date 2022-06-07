@@ -1,4 +1,4 @@
-.postsFilterContainer {
+.truksFilterContainer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -6,6 +6,8 @@
   margin-bottom: 24px;
   padding: 5px;
   flex-wrap: wrap;
+  background-color: var(--card-color);
+  border-radius: 20px;
 
   .filterContainer ul {
     display: flex;
@@ -31,5 +33,4 @@
       align-items: flex-end;
     }
   }
-
 }

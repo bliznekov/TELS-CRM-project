@@ -2,6 +2,7 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { MenuItem, Paper } from "@mui/material";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import TextField from "../ui/textField/TextField";
 import Select from "../ui/select/Select";
 import { useActions } from "../hooks/useActions";
@@ -61,7 +62,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
     };
 
     return (
-        <Paper elevation={3} className={c.postsFilterContainer}>
+        <div className={c.truksFilterContainer}>
             <div className={c.filterContainer}>
                 <ul>
                     <li>
@@ -112,7 +113,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                     </li>
                 </ul>
             </div>
-        </Paper>
+        </div>
     );
 };
 

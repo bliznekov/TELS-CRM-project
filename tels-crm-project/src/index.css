@@ -1,4 +1,4 @@
-* {
+body {
     --background-color: #fefbf8;
     --card-color: #ffffff;
     --primary-color0: #f0810f;
@@ -7,6 +7,18 @@
     --primary-color2: #063852;
     --primary-color3: #011a27;
     --header-color: #111111;
+    --text-color: #ffffff;
+}
+
+body[data-theme="dark"] {
+    --background-color: #063852;
+    --primary-color0: #011a27;
+    --card-color: #28546c;
+    --primary-color2: #f0810f;
+    --primary-color000: #f0810f00;
+    --primary-color1: #e6df44;
+    --primary-color3: #ffffff;
+    --header-color: #ffffff;
     --text-color: #ffffff;
 }
 

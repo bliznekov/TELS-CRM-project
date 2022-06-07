@@ -7,11 +7,16 @@ import useTranslate from "../../hooks/useTranslate";
 import { ReactComponent as LogoutIcon } from "./../../../assets/logout.svg";
 import { ReactComponent as LoginIcon } from "./../../../assets/login.svg";
 
-import c from "./../Header.module.scss";
+import c from "./Controls.module.scss";
+import { Switch } from "@mui/material";
+import useTheme from "../../hooks/useTheme";
 
 const Controls: React.FC = () => {
     const { lang, setLang } = useTranslate();
+    const { theme, setTheme } = useTheme();
+
     const nextLang = lang === "en" ? "ru" : "en";
+    const nextTheme = theme === "dark" ? "" : "dark";
 
     const logged = useSelector((state) => state.auth.logged);
     const { logout } = useActions();
@@ -40,6 +45,11 @@ const Controls: React.FC = () => {
             <button className={c.langButton} onClick={() => setLang(nextLang)}>
                 {nextLang}
             </button>
+            <Switch
+                color="warning"
+                checked={nextTheme === "dark"}
+                onChange={() => setTheme(nextTheme)}
+            />
         </div>
     );
 };
