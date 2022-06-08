@@ -10,7 +10,7 @@ import TelsInfo from "./telsInfo/TelsInfo";
 const Info: React.FC = () => {
     const { t } = useTranslate();
 
-    const logged = useSelector((state) => state.auth.logged);
+    const logged = useSelector(state => state.auth.logged);
 
     return (
         <div className={c.infoContainer}>
@@ -22,15 +22,11 @@ const Info: React.FC = () => {
                         <div>
                             {logged ? (
                                 <Link to="/trucks">
-                                    <Button pulse>
-                                        {t("info.button.trucks")}
-                                    </Button>
+                                    <Button pulse>{t("info.button.trucks")}</Button>
                                 </Link>
                             ) : (
                                 <Link to="/login">
-                                    <Button pulse>
-                                        {t("info.button.start")}
-                                    </Button>
+                                    <Button pulse>{t("info.button.start")}</Button>
                                 </Link>
                             )}
                             <Link to="/login"></Link>

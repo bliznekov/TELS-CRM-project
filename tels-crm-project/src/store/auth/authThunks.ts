@@ -9,11 +9,8 @@ type TokenType = {
     token: string;
 };
 
-export const createTokens = createAsyncThunk<TokenType, FormValuesType>(
-    "auth/createTokens",
-    async (data) => {
-        let url = `${URL}&login=t802_${data.login}&password=${data.password}`;
-        const response = await axios.get(url);
-        return response.data as TokenType;
-    }
-);
+export const createTokens = createAsyncThunk<TokenType, FormValuesType>("auth/createTokens", async data => {
+    let url = `${URL}&login=t802_${data.login}&password=${data.password}`;
+    const response = await axios.get(url);
+    return response.data as TokenType;
+});

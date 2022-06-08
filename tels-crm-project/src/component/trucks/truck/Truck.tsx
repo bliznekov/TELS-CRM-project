@@ -19,7 +19,7 @@ const Truck: React.FC<PropsType> = ({ data }) => {
 
     const { markTruck } = useActions();
 
-    const marks = useSelector((state) => state.trucks.marks);
+    const marks = useSelector(state => state.trucks.marks);
     const isMarked = marks.includes(data.object_id);
 
     const handleClick = () => {
@@ -44,9 +44,7 @@ const Truck: React.FC<PropsType> = ({ data }) => {
                         </li>
                         <li className={c.number}>{data.auto_number}</li>
                         <li className={c.phone}>+{data.phone_number}</li>
-                        <li className={c.speed}>
-                            {data.speed_can === undefined ? 0 : data.speed_can}
-                        </li>
+                        <li className={c.speed}>{data.speed_can === undefined ? 0 : data.speed_can}</li>
                         <li className={c.date}>{data.datetime}</li>
                         <li className={c.cors}>
                             {data.latitude}, {data.longitude}

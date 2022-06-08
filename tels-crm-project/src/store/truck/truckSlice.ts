@@ -17,8 +17,8 @@ const truckSlice = createSlice({
     name: "truck",
     initialState,
     reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(fetchTruck.pending, (state) => {
+    extraReducers: builder => {
+        builder.addCase(fetchTruck.pending, state => {
             state.loading = true;
             state.error = undefined;
             state.data = [];

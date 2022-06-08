@@ -14,10 +14,10 @@ const TruckCard: React.FC = () => {
 
     const { t } = useTranslate();
 
-    const data = useSelector((state) => state.truck.data);
-    const loading = useSelector((state) => state.truck.loading);
-    const error = useSelector((state) => state.truck.error);
-    const token = useSelector((state) => state.auth.token);
+    const data = useSelector(state => state.truck.data);
+    const loading = useSelector(state => state.truck.loading);
+    const error = useSelector(state => state.truck.error);
+    const token = useSelector(state => state.auth.token);
 
     const { fetchTruck } = useActions();
 
@@ -46,11 +46,7 @@ const TruckCard: React.FC = () => {
             </h2>
             <div className={c.truckInfo}>
                 <TruckInfo data={data[0]} />
-                <Map
-                    latitude={data[0].latitude}
-                    longitude={data[0].longitude}
-                    number={data[0].auto_number}
-                />
+                <Map latitude={data[0].latitude} longitude={data[0].longitude} number={data[0].auto_number} />
             </div>
         </div>
     );

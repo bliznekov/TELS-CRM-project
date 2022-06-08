@@ -35,9 +35,7 @@ const TruckInfo: React.FC<PropsType> = ({ data }) => {
             </li>
             <li>
                 <span>{t("truckCard.adress")}</span>
-                <div className={c.place}>
-                    {lang === "ru" ? data.place : data.place_en}
-                </div>
+                <div className={c.place}>{lang === "ru" ? data.place : data.place_en}</div>
             </li>
         </ul>
     );

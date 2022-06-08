@@ -30,7 +30,7 @@ const trucksSlice = createSlice({
     reducers: {
         markTruck: (state, { payload: truckId }: PayloadAction<number>) => {
             if (state.marks.includes(truckId)) {
-                state.marks = state.marks.filter((id) => id !== truckId);
+                state.marks = state.marks.filter(id => id !== truckId);
             } else {
                 state.marks.push(truckId);
             }
@@ -55,8 +55,8 @@ const trucksSlice = createSlice({
             state.mode = mode;
         },
     },
-    extraReducers: (builder) => {
-        builder.addCase(fetchTrucks.pending, (state) => {
+    extraReducers: builder => {
+        builder.addCase(fetchTrucks.pending, state => {
             state.loading = true;
             state.error = undefined;
             state.data = [];

@@ -10,13 +10,7 @@ type PropsType = {
     setValue: (value: string) => void;
 };
 
-const TextField: React.FC<PropsType> = ({
-    autofocus,
-    label,
-    type = "text",
-    value,
-    setValue,
-}) => {
+const TextField: React.FC<PropsType> = ({ autofocus, label, type = "text", value, setValue }) => {
     const nameRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -32,13 +26,7 @@ const TextField: React.FC<PropsType> = ({
     return (
         <div className="text-field-container">
             <div className="label">{label}</div>
-            <input
-                ref={nameRef}
-                value={value || ""}
-                onChange={handleChange}
-                className="input"
-                type={type}
-            />
+            <input ref={nameRef} value={value || ""} onChange={handleChange} className="input" type={type} />
         </div>
     );
 };

@@ -22,14 +22,14 @@ const useTranslate = () => {
         callbacks.push(setLangState);
 
         return () => {
-            callbacks = callbacks.filter((f) => f !== setLangState);
+            callbacks = callbacks.filter(f => f !== setLangState);
         };
     }, []);
 
     const setLang = (_lang: string) => {
         lang = _lang;
         localStorage.setItem("lang", lang);
-        callbacks.forEach((callback) => callback(lang));
+        callbacks.forEach(callback => callback(lang));
     };
 
     const t = (id: string): string => {

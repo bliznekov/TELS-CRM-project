@@ -10,10 +10,7 @@ type PropsType = {
 
 const Button: React.FC<PropsType> = ({ onClick, children, pulse }) => {
     return (
-        <button
-            className={`${c.buttonContainer} ${pulse && c.pulse}`}
-            onClick={onClick}
-        >
+        <button className={`${c.buttonContainer} ${pulse && c.pulse}`} onClick={onClick}>
             {children}
         </button>
     );

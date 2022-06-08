@@ -27,7 +27,7 @@ const authSlice = createSlice({
         setAuthStatus: (state, { payload }: PayloadAction<string>) => {
             state.status = payload;
         },
-        logout: (state) => {
+        logout: state => {
             state.token = undefined;
             state.logged = false;
             state.status = undefined;
@@ -36,13 +36,13 @@ const authSlice = createSlice({
             Storage.remove("logged");
         },
     },
-    extraReducers: (builder) => {
-        builder.addCase(createTokens.pending, (state) => {
+    extraReducers: builder => {
+        builder.addCase(createTokens.pending, state => {
             state.loading = true;
             state.error = false;
         });
 
-        builder.addCase(createTokens.rejected, (state) => {
+        builder.addCase(createTokens.rejected, state => {
             state.loading = false;
             state.error = true;
         });

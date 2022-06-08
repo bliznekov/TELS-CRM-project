@@ -1,8 +1,7 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
-import { MenuItem, Paper } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
 import TextField from "../ui/textField/TextField";
 import Select from "../ui/select/Select";
 import { useActions } from "../hooks/useActions";
@@ -25,19 +24,16 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
 
     const { t } = useTranslate();
 
-    const page = useSelector((state) => state.trucks.page);
-    const limit = useSelector((state) => state.trucks.limit);
-    const truck = useSelector((state) => state.trucks.truck);
-    const mode = useSelector((state) => state.trucks.mode);
+    const page = useSelector(state => state.trucks.page);
+    const limit = useSelector(state => state.trucks.limit);
+    const truck = useSelector(state => state.trucks.truck);
+    const mode = useSelector(state => state.trucks.mode);
 
     const handleChangeLimit = (value: string) => {
         setLimit(+value);
     };
 
-    const handleChangePage = (
-        event: React.ChangeEvent<unknown>,
-        value: number
-    ) => {
+    const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
 
@@ -45,10 +41,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
         setTruck(value);
     };
 
-    const handleToggleMode = (
-        _: React.MouseEvent<HTMLElement>,
-        newMode: Mode
-    ) => {
+    const handleToggleMode = (_: React.MouseEvent<HTMLElement>, newMode: Mode) => {
         setMode(newMode);
         setPage(1);
     };
@@ -58,11 +51,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
             <div className={c.filterContainer}>
                 <ul>
                     <li>
-                        <TextField
-                            label={t("trucks.filter.textfield")}
-                            value={truck}
-                            setValue={updateTruck}
-                        />
+                        <TextField label={t("trucks.filter.textfield")} value={truck} setValue={updateTruck} />
                     </li>
                     <li>
                         <ToggleButtonGroup
@@ -72,12 +61,8 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                             size="small"
                             color="warning"
                         >
-                            <ToggleButton value={Mode.ALL}>
-                                {t("trucks.filter.toggle.all")}
-                            </ToggleButton>
-                            <ToggleButton value={Mode.MARKED}>
-                                {t("trucks.filter.toggle.marked")}
-                            </ToggleButton>
+                            <ToggleButton value={Mode.ALL}>{t("trucks.filter.toggle.all")}</ToggleButton>
+                            <ToggleButton value={Mode.MARKED}>{t("trucks.filter.toggle.marked")}</ToggleButton>
                         </ToggleButtonGroup>
                     </li>
                 </ul>
@@ -93,11 +78,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                         />
                     </li>
                     <li>
-                        <Select
-                            label={t("trucks.filter.select")}
-                            value={limit.toString()}
-                            setValue={handleChangeLimit}
-                        >
+                        <Select label={t("trucks.filter.select")} value={limit.toString()} setValue={handleChangeLimit}>
                             <MenuItem value={10}>10</MenuItem>
                             <MenuItem value={20}>20</MenuItem>
                             <MenuItem value={30}>30</MenuItem>

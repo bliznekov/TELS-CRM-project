@@ -8,11 +8,7 @@ type PropsType = {
     number?: string;
 };
 
-const Map: React.FC<PropsType> = ({
-    latitude = "55.018600",
-    longitude = "32.293196",
-    number = "number",
-}) => {
+const Map: React.FC<PropsType> = ({ latitude = "55.018600", longitude = "32.293196", number = "number" }) => {
     const getMapOptions = () => {
         return {
             disableDefaultUI: true,
@@ -28,8 +24,8 @@ const Map: React.FC<PropsType> = ({
         };
     };
 
-    const [center, setCenter] = useState({ lat: +latitude, lng: +longitude });
-    const [zoom, setZoom] = useState(8);
+    const [center] = useState({ lat: +latitude, lng: +longitude });
+    const [zoom] = useState(8);
     return (
         <div style={{ height: "500px", width: "500px", margin: "40px" }}>
             <GoogleMapReact
@@ -40,12 +36,7 @@ const Map: React.FC<PropsType> = ({
                 defaultZoom={zoom}
                 options={getMapOptions}
             >
-                <Marker
-                    lat={+latitude}
-                    lng={+longitude}
-                    name={number}
-                    color="orange"
-                />
+                <Marker lat={+latitude} lng={+longitude} name={number} color="orange" />
             </GoogleMapReact>
         </div>
     );

@@ -18,7 +18,7 @@ const Controls: React.FC = () => {
     const nextLang = lang === "en" ? "ru" : "en";
     const nextTheme = theme === "dark" ? "" : "dark";
 
-    const logged = useSelector((state) => state.auth.logged);
+    const logged = useSelector(state => state.auth.logged);
     const { logout } = useActions();
 
     const handleLogout = () => {
@@ -29,27 +29,17 @@ const Controls: React.FC = () => {
         <div className={c.controls}>
             {logged ? (
                 <>
-                    <LogoutIcon
-                        className={c.logoutButton}
-                        onClick={handleLogout}
-                    />
+                    <LogoutIcon className={c.logoutButton} onClick={handleLogout} />
                 </>
             ) : (
                 <Link to="/login">
-                    <LoginIcon
-                        className={c.logoutButton}
-                        onClick={handleLogout}
-                    />
+                    <LoginIcon className={c.logoutButton} onClick={handleLogout} />
                 </Link>
             )}
             <button className={c.langButton} onClick={() => setLang(nextLang)}>
                 {nextLang}
             </button>
-            <Switch
-                color="warning"
-                checked={nextTheme === "dark"}
-                onChange={() => setTheme(nextTheme)}
-            />
+            <Switch color="warning" checked={nextTheme === "dark"} onChange={() => setTheme(nextTheme)} />
         </div>
     );
 };

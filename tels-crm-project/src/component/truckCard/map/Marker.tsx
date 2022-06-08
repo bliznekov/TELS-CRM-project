@@ -2,7 +2,7 @@ import React from "react";
 import c from "./Marker.module.scss";
 
 const Marker = (props: any) => {
-    const { color, name, id } = props;
+    const { color, name } = props;
     return (
         <div>
             <div

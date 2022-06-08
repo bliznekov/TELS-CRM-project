@@ -18,15 +18,13 @@ const Login: React.FC = () => {
 
     const { createTokens, setAuthError, setAuthStatus } = useActions();
 
-    const loading = useSelector((state) => state.auth.loading);
-    const serverError = useSelector((state) => state.auth.error);
-    const authError = useSelector((state) => state.auth.status);
+    const loading = useSelector(state => state.auth.loading);
+    const serverError = useSelector(state => state.auth.error);
+    const authError = useSelector(state => state.auth.status);
     const error: string =
         validationsError ||
         (serverError ? t("login.error.server") : "") ||
-        (authError === "AUTHORIZATION_FAILED"
-            ? t("login.error.loginPass")
-            : "");
+        (authError === "AUTHORIZATION_FAILED" ? t("login.error.loginPass") : "");
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -39,9 +37,7 @@ const Login: React.FC = () => {
         }
     };
 
-    const setValues = (
-        callback: (prevValue: FormValuesType) => FormValuesType
-    ) => {
+    const setValues = (callback: (prevValue: FormValuesType) => FormValuesType) => {
         _setValues(callback);
         setValidationsError("");
         setAuthError(false);

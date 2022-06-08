@@ -12,18 +12,17 @@ type TruckFilterType = {
     token?: string;
 };
 
-export const fetchTruck = createAsyncThunk<
-    FetchTruckType,
-    TruckFilterType,
-    { rejectValue: string }
->("truck/fetchTruck", async ({ id, token }, thunkApi) => {
-    let url = `${URL}${token}&string="json"&object_id=${id}&get_en_address=true&get_address=true`;
-    try {
-        const response = await axios.get(url);
-        return {
-            data: response.data.root.result.items as TrukType[],
-        };
-    } catch {
-        return thunkApi.rejectWithValue("Server error!");
+export const fetchTruck = createAsyncThunk<FetchTruckType, TruckFilterType, { rejectValue: string }>(
+    "truck/fetchTruck",
+    async ({ id, token }, thunkApi) => {
+        let url = `${URL}${token}&string="json"&object_id=${id}&get_en_address=true&get_address=true`;
+        try {
+            const response = await axios.get(url);
+            return {
+                data: response.data.root.result.items as TrukType[],
+            };
+        } catch {
+            return thunkApi.rejectWithValue("Server error!");
+        }
     }
-});
+);

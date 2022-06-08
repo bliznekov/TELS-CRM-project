@@ -22,19 +22,19 @@ const Truks: React.FC<PropsType> = () => {
 
     const { t } = useTranslate();
 
-    const data = useSelector((state) => state.trucks.data);
-    const loading = useSelector((state) => state.trucks.loading);
-    const error = useSelector((state) => state.trucks.error);
-    const marks = useSelector((state) => state.trucks.marks);
-    const page = useSelector((state) => state.trucks.page);
-    const limit = useSelector((state) => state.trucks.limit);
-    const truck = useSelector((state) => state.trucks.truck);
-    const mode = useSelector((state) => state.trucks.mode);
-    const token = useSelector((state) => state.auth.token);
+    const data = useSelector(state => state.trucks.data);
+    const loading = useSelector(state => state.trucks.loading);
+    const error = useSelector(state => state.trucks.error);
+    const marks = useSelector(state => state.trucks.marks);
+    const page = useSelector(state => state.trucks.page);
+    const limit = useSelector(state => state.trucks.limit);
+    const truck = useSelector(state => state.trucks.truck);
+    const mode = useSelector(state => state.trucks.mode);
+    const token = useSelector(state => state.auth.token);
 
     const filterdData = data
         .filter((item, index) => data.indexOf(item) === index)
-        .filter((item) => {
+        .filter(item => {
             if (mode === Mode.ALL) {
                 return item;
             } else if (mode === Mode.MARKED) {
@@ -81,7 +81,7 @@ const Truks: React.FC<PropsType> = () => {
                     <Mark />
                 </li>
             </ul>
-            {paginationData.map((item) => (
+            {paginationData.map(item => (
                 <Truck key={item.object_id} data={item} />
             ))}
             {loading && <LinearProgress color="warning" />}

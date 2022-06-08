@@ -10,7 +10,7 @@ import "./App.scss";
 import { useSelector } from "./component/hooks/useSelector";
 
 function App() {
-    const logged = useSelector((state) => state.auth.logged);
+    const logged = useSelector(state => state.auth.logged);
 
     return (
         <BrowserRouter>
