@@ -1,0 +1,28 @@
+.links {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+
+  li {
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+
+  a {
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--primary-color2);
+    }
+
+    &.active {
+      font-weight: bold;
+      color: var(--primary-color2);
+    }
+  }
+}

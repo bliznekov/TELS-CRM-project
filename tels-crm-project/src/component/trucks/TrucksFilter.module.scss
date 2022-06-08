@@ -1,11 +1,13 @@
-.postsFilterContainer {
+.truksFilterContainer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
-  padding: 24px;
+  padding: 5px;
   flex-wrap: wrap;
+  background-color: var(--card-color);
+  border-radius: 20px;
 
   .filterContainer ul {
     display: flex;
@@ -16,11 +18,19 @@
       margin: 0 15px;
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: flex-end;
     }
   }
 
-  nav {
-    margin: 16px 10px;
+  .paginationContainer ul {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 15px;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
   }
 }

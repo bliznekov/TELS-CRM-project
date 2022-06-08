@@ -1,0 +1,39 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .logoutButton {
+    width: 25px;
+    cursor: pointer;
+
+    path {
+      fill: var(--text-color);
+      transition: 0.5s;
+
+      &:hover {
+        fill: var(--primary-color2);
+      }
+    }
+  }
+
+  .langButton {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    color: var(--text-color);
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    margin: 0 10px;
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: rgba(28, 28, 28, 0);
+    transition: 0.5s;
+
+    &:hover {
+      font-weight: bold;
+      color: var(--primary-color2);
+    }
+  }
+}

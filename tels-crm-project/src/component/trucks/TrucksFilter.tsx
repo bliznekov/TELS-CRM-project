@@ -2,6 +2,7 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { MenuItem, Paper } from "@mui/material";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import TextField from "../ui/textField/TextField";
 import Select from "../ui/select/Select";
 import { useActions } from "../hooks/useActions";
@@ -40,8 +41,16 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
         setPage(value);
     };
 
+    // let str = "";
+    // let timer: NodeJS.Timeout;
+
     const updateTruck = (value: string) => {
+        // str += value;
+        // clearTimeout(timer);
+        // timer = setTimeout(() => {
         setTruck(value);
+        //     str = "";
+        // }, 500);
     };
 
     const handleToggleMode = (
@@ -53,7 +62,7 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
     };
 
     return (
-        <Paper elevation={3} className={c.postsFilterContainer}>
+        <div className={c.truksFilterContainer}>
             <div className={c.filterContainer}>
                 <ul>
                     <li>
@@ -62,17 +71,6 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                             value={truck}
                             setValue={updateTruck}
                         />
-                    </li>
-                    <li>
-                        <Select
-                            label={t("trucks.filter.select")}
-                            value={limit.toString()}
-                            setValue={handleChangeLimit}
-                        >
-                            <MenuItem value={10}>10</MenuItem>
-                            <MenuItem value={20}>20</MenuItem>
-                            <MenuItem value={30}>30</MenuItem>
-                        </Select>
                     </li>
                     <li>
                         <ToggleButtonGroup
@@ -92,13 +90,30 @@ const TrucksFilter: React.FC<PropsType> = ({ count }) => {
                     </li>
                 </ul>
             </div>
-            <Pagination
-                className="pagination"
-                page={page}
-                onChange={handleChangePage}
-                count={Math.ceil(count / limit)}
-            />
-        </Paper>
+            <div className={c.paginationContainer}>
+                <ul>
+                    <li>
+                        <Pagination
+                            className="pagination"
+                            page={page}
+                            onChange={handleChangePage}
+                            count={Math.ceil(count / limit)}
+                        />
+                    </li>
+                    <li>
+                        <Select
+                            label={t("trucks.filter.select")}
+                            value={limit.toString()}
+                            setValue={handleChangeLimit}
+                        >
+                            <MenuItem value={10}>10</MenuItem>
+                            <MenuItem value={20}>20</MenuItem>
+                            <MenuItem value={30}>30</MenuItem>
+                        </Select>
+                    </li>
+                </ul>
+            </div>
+        </div>
     );
 };
 

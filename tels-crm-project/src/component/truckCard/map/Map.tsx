@@ -1,51 +1,54 @@
-import React, { SetStateAction } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import React, { useState } from "react";
+import GoogleMapReact from "google-map-react";
+import Marker from "./Marker";
 
-const containerStyle = {
-    width: "500px",
-    height: "500px",
+type PropsType = {
+    latitude?: string;
+    longitude?: string;
+    number?: string;
 };
 
-const center = {
-    lat: -3.745,
-    lng: -38.523,
-};
+const Map: React.FC<PropsType> = ({
+    latitude = "55.018600",
+    longitude = "32.293196",
+    number = "number",
+}) => {
+    const getMapOptions = () => {
+        return {
+            disableDefaultUI: true,
+            mapTypeControl: true,
+            streetViewControl: true,
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "on" }],
+                },
+            ],
+        };
+    };
 
-function Map() {
-    const { isLoaded } = useJsApiLoader({
-        id: "google-map-script",
-        googleMapsApiKey: "YOUR_API_KEY",
-    });
-
-    const [map, setMap] = React.useState(null);
-
-    const onLoad = React.useCallback(function callback(map: google.maps.Map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        // setMap(map);
-    }, []);
-
-    const onUnmount = React.useCallback(function callback(
-        map: google.maps.Map
-    ) {
-        setMap(null);
-    },
-    []);
-
-    return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-        >
-            {/* Child components, such as markers, info windows, etc. */}
-            <></>
-        </GoogleMap>
-    ) : (
-        <></>
+    const [center, setCenter] = useState({ lat: +latitude, lng: +longitude });
+    const [zoom, setZoom] = useState(8);
+    return (
+        <div style={{ height: "500px", width: "500px", margin: "40px" }}>
+            <GoogleMapReact
+                bootstrapURLKeys={{
+                    key: "AIzaSyCXDhAfeFG_kqxjh_l219GRV2VHGzM2j4w",
+                }}
+                defaultCenter={center}
+                defaultZoom={zoom}
+                options={getMapOptions}
+            >
+                <Marker
+                    lat={+latitude}
+                    lng={+longitude}
+                    name={number}
+                    color="orange"
+                />
+            </GoogleMapReact>
+        </div>
     );
-}
+};
 
-export default React.memo(Map);
+export default Map;
