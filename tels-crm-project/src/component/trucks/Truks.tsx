@@ -1,22 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "../hooks/useSelector";
 import { useActions } from "../hooks/useActions";
 import Truck from "./truck/Truck";
 import TrucksFilter, { Mode } from "./TrucksFilter";
 import { AppDispatch } from "../../store/store";
 import { useDispatch } from "react-redux";
+import useTranslate from "../hooks/useTranslate";
+import { LinearProgress } from "@mui/material";
 
 import { ReactComponent as Mark } from "./../../assets/bookmarkHead.svg";
 import { ReactComponent as TruckHead } from "./../../assets/truckHead.svg";
+
 import c from "./Trucks.module.scss";
-import { LinearProgress } from "@mui/material";
-import useTranslate from "../hooks/useTranslate";
 
 type PropsType = {};
 
 const Truks: React.FC<PropsType> = () => {
     const { fetchTrucks } = useActions();
-    // const dispatch: AppDispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
+    const isMounted = useRef(false);
 
     const { t } = useTranslate();
 
@@ -41,13 +43,25 @@ const Truks: React.FC<PropsType> = () => {
             return false;
         });
     const paginationData = filterdData.slice(limit * (page - 1), limit * page);
+
     useEffect(() => {
-        // const promise = dispatch(fetchTrucks({ truck, token }));
-        // return () => {
-        //     promise.abort();
-        // };
         fetchTrucks({ truck, token });
-    }, [truck, token]);
+    }, []);
+
+    useEffect(() => {
+        if (isMounted.current) {
+            let promise: any;
+            const timeoutId = setTimeout(() => {
+                promise = dispatch(fetchTrucks({ truck, token }));
+            }, 200);
+            return () => {
+                clearTimeout(timeoutId);
+                promise?.abort();
+            };
+        } else {
+            isMounted.current = true;
+        }
+    }, [truck]);
 
     return (
         <div className={c.trucksContainer}>
