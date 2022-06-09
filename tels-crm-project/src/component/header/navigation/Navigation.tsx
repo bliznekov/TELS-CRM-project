@@ -13,17 +13,14 @@ const getLinks = (logged: boolean) => [
 const Navigation: React.FC = () => {
     const { t } = useTranslate();
 
-    const logged = useSelector((state) => state.auth.logged);
+    const logged = useSelector(state => state.auth.logged);
     const links = getLinks(logged);
 
     return (
         <ul className={c.links}>
             {links.map(({ url, text }) => (
                 <li key={url + text}>
-                    <NavLink
-                        to={url}
-                        className={({ isActive }) => (isActive ? c.active : "")}
-                    >
+                    <NavLink to={url} className={({ isActive }) => (isActive ? c.active : "")}>
                         {t(text)}
                     </NavLink>
                 </li>

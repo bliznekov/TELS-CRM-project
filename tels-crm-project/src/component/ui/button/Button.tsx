@@ -4,7 +4,7 @@ import c from "./Button.module.scss";
 
 type PropsType = {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    children: React.ReactNode;
+    children?: React.ReactNode;
     pulse?: boolean;
 };
 

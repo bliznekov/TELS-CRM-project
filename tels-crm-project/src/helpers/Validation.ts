@@ -1,5 +1,5 @@
 export const getLoginError = (value: string): boolean => {
-    let re = /^[A-Za-z0-9]{2,10}$/;
+    let re = /^[A-Za-z0-9]{3,10}$/;
     return !re.test(value) ? true : false;
 };
 
