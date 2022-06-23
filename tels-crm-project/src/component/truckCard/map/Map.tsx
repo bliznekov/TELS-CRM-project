@@ -8,6 +8,8 @@ type PropsType = {
     number?: string;
 };
 
+const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
+
 const Map: React.FC<PropsType> = ({ latitude = "55.018600", longitude = "32.293196", number = "number" }) => {
     const getMapOptions = () => {
         return {
@@ -30,7 +32,7 @@ const Map: React.FC<PropsType> = ({ latitude = "55.018600", longitude = "32.2931
         <div style={{ height: "500px", width: "500px", margin: "40px" }}>
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: "AIzaSyCXDhAfeFG_kqxjh_l219GRV2VHGzM2j4w",
+                    key: `${API_KEY}`,
                 }}
                 defaultCenter={center}
                 defaultZoom={zoom}
